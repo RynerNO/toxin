@@ -1,0 +1,203 @@
+@import './colors'
+// DROPDOWN
+.dropdown
+  display: flex
+  align-items: center
+  position: relative
+  color: $shade-50
+  cursor: pointer
+  &__items
+    visibility: hidden
+    opacity: 0
+    top: 0
+    left: 0
+    pointer-events: none
+    position: absolute
+    list-style: none
+    border-radius: 0.25rem
+    background: #fff
+    min-width: 10rem
+    padding: 0.25rem
+    margin: 0
+    cursor: pointer
+    transition: opacity 0.2s linear
+    &-visible
+      visibility: visible
+      opacity: 1
+      pointer-events: auto
+      transition: opacity 0.2s linear
+  &__arrow
+    font-size: 1.5rem
+    color: $shade-50
+    user-select: none
+  &__item
+    padding: 0.5rem
+    &:hover
+      background: $shade-50
+      a
+        color: #fff
+// BUTTONS
+
+.btn 
+  display: flex
+  justify-content: center
+  padding: 0.99rem 1.21rem
+  background: linear-gradient(#BC9CFF 0%,#8BA4F9 100%)
+  border: none
+  outline: none
+  border-radius: 9999px
+  cursor: pointer
+  font-size: 0.75rem
+  font-weight: bold
+  color: #fff
+  &:hover
+    opacity: 0.5
+  &_no-bg
+    background: #fff
+    color: $purple
+    position: relative
+
+    &::after
+      content: ''
+      background: linear-gradient(#BC9CFF 0%,#8BA4F9 100%)
+      position: absolute
+      top: -2px
+      width: 100%
+      height: 100%
+      z-index: -1
+      border-radius: 9999px
+      padding: 2px
+    &:hover
+      opacity: 1
+      &::after
+        opacity: 0.55
+  &_text
+    background: none
+    color: $purple
+    padding: 0
+    &:hover
+      color: $shade-50
+      opacity: 1
+  &_bg-arrow
+    display: flex
+    align-items: center
+    max-width: 20rem
+    min-width: 10rem
+    width: 100%
+    justify-content: center
+    span
+      margin-left: auto 
+      color: #fff
+      font-size: 0.75rem
+  &__arrow
+    margin-left: auto
+    padding-left: 0.7rem    
+
+// DATEPICKER
+.datepicker
+  // FIXME: Margin top has to be removed
+  margin-top: 15px
+  max-width: 20rem
+  width: 100%
+  border: 1px solid $shade-25
+  box-shadow: 0px 10px 20px $shade-5
+  border-radius: 4px
+  &__controls
+    width: 100%
+    span
+      text-transform: capitalize
+  &__calendar
+    width: 100%
+    padding: 0rem 1.25rem
+  &__dayNames
+    width: 100%
+    display: grid
+    grid-template-columns: repeat(7, 1fr)
+    span
+      text-align: center
+      padding: 0.75rem 0rem
+      text-transform: capitalize
+      color: $purple
+      font-weight: bold
+  &__dayNumbers
+    width: 100%
+    display: grid
+    grid-template-columns: repeat(7, 1fr)
+    span
+      text-align: center
+      padding: 0.75rem 0rem
+      user-select: none
+    &-day
+      cursor: pointer
+      &:hover 
+        background: linear-gradient(180deg, #6FCF97 0%, #66D2EA 100%)
+        border-radius: 22px
+        color: #fff
+        font-weight: bold
+      &_selected
+        background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%)
+        border-radius: 22px
+        color: #fff
+        font-weight: bold
+      &_gradient
+        position: relative
+        color: $shade-50
+        &::before
+          content: ''     
+          background: linear-gradient(180deg, rgba(187, 156, 255, 0.25) 0%, rgba(139, 165, 249, 0.25) 100%)
+          position: absolute
+          top: 0px
+          left: 0px
+          width: 100%
+          height: 100%
+          z-index: -1
+        &-start
+          position: relative
+          &::before
+            content: ''     
+            background: linear-gradient(180deg, rgba(187, 156, 255, 0.25) 0%, rgba(139, 165, 249, 0.25) 100%)
+            position: absolute
+            left: 50%
+            top: 0px
+            width: 50%
+            height: 100%
+            z-index: -1
+        &-end
+          position: relative
+          &::after
+            content: ''     
+            background: linear-gradient(180deg, rgba(187, 156, 255, 0.25) 0%, rgba(139, 165, 249, 0.25) 100%)
+            position: absolute
+            right: 50%
+            top: 0px
+            width: 50%
+            height: 100%
+            z-index: -1
+          
+    &-decor
+      color: $shade-25
+  &__buttons
+    display: flex
+    justify-content: space-between
+    padding: 1.25rem
+    text-transform: uppercase
+    span
+      color: $shade-50
+      font-weight: bold
+      &:hover
+        color: $purple
+        cursor: pointer
+  &__controls
+    display: flex
+    justify-content: space-between
+    padding: 1.25rem
+    padding-bottom: 1.875rem
+    i
+      color: $purple
+      cursor: pointer
+  &__controls-info
+    span
+      font-family: 'Quicksand', 'Montserrat'
+      font-weight: bold
+      color: $shade-100
+      font-size: 1.1875rem

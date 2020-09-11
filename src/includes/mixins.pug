@@ -1,0 +1,47 @@
+//- DROPDOWNS
+
+mixin dropdownControl(name, items)
+  div.dropdown(data-expanded="false")
+    span(class="dropdown__name")= name
+    i.material-icons.dropdown__arrow keyboard_arrow_down
+    ul.dropdown__items
+      each item in items
+        li(class="dropdown__item" )
+          a(href=item.url)= item.name
+
+mixin DatePicker(id)
+  div(id=id).datepicker
+    div.datepicker__controls
+      i.material-icons.datepicker__back arrow_back
+      div.datepicker__controls-info
+        
+      i.material-icons.datepicker__forward arrow_forward
+    div.datepicker__calendar
+      div.datepicker__dayNames
+        span пн
+        span вт
+        span ср
+        span чт
+        span пт
+        span сб
+        span вс
+      div.datepicker__dayNumbers
+        
+    div.datepicker__buttons
+      span.datepicker__cancel отменить
+      span.datepicker__submit применить
+//- BUTTONS
+
+mixin buttonFilledWithArrow(name, type, id)
+  if type === 'border'
+    button(class="btn btn_no-bg" id=id)=name
+  else if type === 'text'
+    button(class="btn btn_text" id=id)=name
+  else if type === 'arrow'
+    button(class="btn btn_bg-arrow" id=id)
+      span=name
+      i.material-icons.btn__arrow arrow_forward
+  else
+    button(class="btn" id=type)=name
+
+//- CARDS

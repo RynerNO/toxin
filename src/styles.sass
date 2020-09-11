@@ -1,5 +1,35 @@
-body
-  background: #222
-  color: #ffffff
-  display: flex
-  justify-content: center
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap')
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons')
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap')
+@import 'styles/mixins'
+@import 'styles/colors'
+body 
+  font-family: "Montserrat"
+
+ul, li, a, p, span, input, div
+  font-size: 0.875rem
+  color: $shade-75
+  text-decoration: none
+  box-sizing: border-box
+.header
+  margin: 25px
+
+input[type="text"]
+  border: 1px solid $shade-25
+  max-width: 20rem
+  width: 100%
+  color: $shade-25
+  padding: 0.93rem 0px
+  padding-left: 1rem
+  border-radius: 4px
+  font-size: 0.87rem
+  outline: none
+  &:hover
+    border-color: $shade-50
+  &:focus
+    border-color: $shade-50
+    color: $shade-75
+  &::placeholder
+    color: $shade-25
+    font-size: 0.87rem

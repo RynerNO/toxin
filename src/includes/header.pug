@@ -1,0 +1,26 @@
+include ./mixins.pug
+div.header
+  img(src="./assets/logo.svg").header__logo
+  div.logo__controls.controls
+    +dropdownControl('Услуги', [{
+      name: 'Услуга 1',
+      url: '/test'
+    },
+    {
+      name: 'Услуга 2',
+      url: '/test'
+    },
+    {
+      name: 'Услуга 3',
+      url: '/test'
+    },
+    {
+      name: 'Услуга 4',
+      url: '/test'
+    }])
+    +buttonFilledWithArrow('ОПЛАТЕ', 'arrow')
+
+    input(type="text" placeholder="Email")
+    input(type="text" id="date-mask")
+
+    +DatePicker('datepicker')
