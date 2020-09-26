@@ -4,8 +4,6 @@ import imask from 'imask'
 import rangeSlider from 'nouislider'
 import Dropdown from './js/Dropown'
 import DatePicker from './js/DatePicker'
-const dropdown = new Dropdown('dropdown')
-dropdown.init()
 
 const dateMask = imask(document.getElementById('date-mask'), {
 	mask: Date,
@@ -44,3 +42,6 @@ datePicker.on('submit', (date) => {
 datePicker.on('cancel', () => {
 	console.log('cancel')
 })
+const dateDropdown = Dropdown.DropdownDate('test')
+
+const optionsDropdown = Dropdown.DropdownOptions('test_2')

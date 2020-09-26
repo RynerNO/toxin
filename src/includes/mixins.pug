@@ -9,8 +9,50 @@ mixin dropdownControl(name, items)
         li(class="dropdown__item" )
           a(href=item.url)= item.name
 
+
+mixin dateDropdown(id)
+  if id 
+    div(id=id).dateDropdown
+      div.dateDropdown__datepicker-container
+        div.dateDropdown__buttons
+          - var from_id = id+'_from'
+          div.dropdown-btn.dateDropdown__button
+            span(id=from_id) ДД.ММ.ГГГГ
+            i.material-icons keyboard_arrow_down
+          - var to_id = id+'_to'
+          div.dropdown-btn.dateDropdown__button
+            span(id=to_id) ДД.ММ.ГГГГ
+            i.material-icons keyboard_arrow_down
+        div.dateDropdown__calendar
+          - var calendar_id = id+'_cal'
+          +DatePicker(calendar_id)
+  else
+   p ID is required
+
+mixin dropdownOptions(id, options) 
+  if id 
+    div(id=id).dropdownOptions
+      div.dropdown-btn.dropdownOptions__button
+        span.dropdownOptions__text-field Сколько гостей
+        i.material-icons keyboard_arrow_down
+      div.dropdownOptions__content.dropdownOptions_hidden
+        each option in options  
+          div.dropdownOptions__option(name=option.name)
+            span.dropdownOptions__option-text=option.text
+            div.dropdownOptions__option-controls
+              i.dropdownOptions__icon.dropdownOptions__decr.dropdownOptions__icon_disabled -
+              span.dropdownOptions__option-counter 0
+              i.dropdownOptions__icon.dropdownOptions__incr +
+
+        div.dropdownOptions__buttons
+          button(class="btn btn_text dropdownOptions__clear" ) Очистить
+          button(class="btn btn_text dropdownOptions__confirm") Применить
+  else
+   p ID is required
+
+//- DATEPICKER
 mixin DatePicker(id)
-  div(id=id).datepicker
+  div(id=id).datepicker.datepicker_hidden
     div.datepicker__controls
       i.material-icons.datepicker__back arrow_back
       div.datepicker__controls-info
@@ -45,3 +87,7 @@ mixin buttonFilledWithArrow(name, type, id)
     button(class="btn" id=type)=name
 
 //- CARDS
+mixin cardPickDate() 
+  div.card
+    div.card__content
+      h1.card__title

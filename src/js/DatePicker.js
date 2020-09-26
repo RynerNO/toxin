@@ -2,7 +2,8 @@ import Events from './Events'
 export class DatePicker extends Events {
 	constructor(element, year, month) {
 		super()
-		this.element = document.querySelector(element) || element
+		this.element =
+			typeof element === 'string' ? document.querySelector(element) : element
 		this.year = year || new Date().getFullYear()
 		this.month = month || new Date().getMonth()
 		this.date = {
@@ -104,12 +105,20 @@ export class DatePicker extends Events {
 				)
 				this.date.to.element = undefined
 			}
+			this.emit('from', {
+				from: this.date.from.value,
+				to: this.date.to.value,
+			})
 			return
 		}
 		if (selectedDate.getTime() === this.date.from.value.getTime()) {
 			this.date.from.value = undefined
 			this.date.from.element = undefined
 			e.target.classList.remove('datepicker__dayNumbers-day_selected')
+			this.emit('from', {
+				from: this.date.from.value,
+				to: this.date.to.value,
+			})
 			return
 		}
 		if (this.date.from.value < selectedDate) {
@@ -120,7 +129,10 @@ export class DatePicker extends Events {
 			e.target.classList.add('datepicker__dayNumbers-day_selected')
 			this.date.to.value = selectedDate
 			this.date.to.element = e.target
-
+			this.emit('to', {
+				from: this.date.from.value,
+				to: this.date.to.value,
+			})
 			return
 		} else {
 			if (!!this.date.from.element)
@@ -130,6 +142,10 @@ export class DatePicker extends Events {
 			e.target.classList.add('datepicker__dayNumbers-day_selected')
 			this.date.from.value = selectedDate
 			this.date.from.element = e.target
+			this.emit('from', {
+				from: this.date.from.value,
+				to: this.date.to.value,
+			})
 			return
 		}
 	}
@@ -198,7 +214,33 @@ export class DatePicker extends Events {
 		} else this.month--
 		this.#genCalendar()
 	}
+	close() {
+		this.emit('cancel')
+		this.date = {
+			from: {},
+			to: {},
+		}
+		this.active = false
+		this.element.classList.add('datepicker_hidden')
+	}
 
+	open(date) {
+		if (date) {
+			this.date = {
+				from: {
+					value: date.from,
+				},
+				to: {
+					value: date.to,
+				},
+			}
+			this.year = date.from.getFullYear()
+			this.month = date.from.getMonth()
+		}
+		this.active = true
+		this.#genCalendar()
+		this.element.classList.remove('datepicker_hidden')
+	}
 	#init() {
 		this.#genCalendar()
 		this.element
@@ -219,11 +261,12 @@ export class DatePicker extends Events {
 					from: this.date.from.value,
 					to: this.date.to.value,
 				})
+				this.close()
 			})
 		this.element
 			.querySelector('.datepicker__cancel')
 			.addEventListener('click', () => {
-				this.emit('cancel')
+				this.close()
 			})
 	}
 }
