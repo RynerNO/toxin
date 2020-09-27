@@ -12,6 +12,9 @@ export class Dropdown {
 	static ExpandedChecklist(id) {
 		return new ExpandedChecklist(id)
 	}
+	static RichChecklist(id) {
+		return new RichChecklist(id)
+	}
 }
 export default Dropdown
 
@@ -242,7 +245,7 @@ class ExpandedChecklist extends DropdownBase {
 			console.log(name)
 			option.checkBox.addEventListener('click', () => {
 				option.checked = !option.checked
-				option.checkBox.classList.toggle(`${this.baseClass}__checkbox_checked`)
+				option.checkBox.classList.toggle(`checkbox_checked`)
 				this.options.set(name, option)
 				this.emit('check', { name, ...option })
 			})
@@ -253,7 +256,7 @@ class ExpandedChecklist extends DropdownBase {
 		let optionEls = this.content.querySelectorAll(`.${this.baseClass}__option`)
 		for (let optionEl of optionEls) {
 			let option = {
-				checkBox: optionEl.querySelector(`.${this.baseClass}__checkbox`),
+				checkBox: optionEl.querySelector(`.checkbox`),
 				checked: false,
 			}
 			this.options.set(optionEl.getAttribute('name'), option)
@@ -271,5 +274,40 @@ class ExpandedChecklist extends DropdownBase {
 		this.expand_btn.classList.add(`${this.baseClass}__button_expanded`)
 		this.content.classList.remove(`${this.baseClass}__content_hidden`)
 		this.expanded = true
+	}
+}
+
+class RichChecklist extends DropdownBase {
+	constructor(id) {
+		super()
+		this.wrapper = document.querySelector(`#${id}`)
+		this.baseClass = 'richCheckbox'
+		this.expanded = false
+		this.#init()
+	}
+	#init() {
+		this.#parseOptions()
+		for (let [name, option] of this.options) {
+			option.checkBox.addEventListener('click', () => {
+				option.checked = !option.checked
+				option.checkBox.classList.toggle(`checkbox_checked`)
+				this.options.set(name, option)
+				this.emit('check', { name, ...option })
+			})
+		}
+	}
+	#parseOptions() {
+		this.options = new Map()
+		let optionEls = this.wrapper.querySelectorAll(`.${this.baseClass}__option`)
+		for (let optionEl of optionEls) {
+			let option = {
+				checkBox: optionEl.querySelector(`.checkbox`),
+				checked: false,
+			}
+			this.options.set(optionEl.getAttribute('name'), option)
+		}
+	}
+	getOption(name) {
+		return this.options.get(name).checked
 	}
 }

@@ -50,6 +50,7 @@ mixin dropdownOptions(id, options)
   else
    p ID is required
 
+//- Checkbox
 mixin expCheckbox(id, text, options)
   if id
     div(id=id).expCheckbox
@@ -59,9 +60,24 @@ mixin expCheckbox(id, text, options)
       div.expCheckbox__content.expCheckbox__content_hidden
         each option in options  
           div.expCheckbox__option(name=option.name)
-            div.expCheckbox__checkbox
+            div.checkbox
               i
             span=option.text
+  else
+    p ID is required
+
+mixin richCheckbox(id, text, options)
+  if id
+    div(id=id).richCheckbox
+      h3(.richCheckbox__title)=text
+      div.richCheckbox__content
+        each option in options
+          div.richCheckbox__option(name=option.name)
+            div.checkbox
+                i
+            div.richCheckbox__option-text
+              p=option.title
+              p=option.text
   else
     p ID is required
 //- DATEPICKER

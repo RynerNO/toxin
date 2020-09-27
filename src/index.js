@@ -47,3 +47,5 @@ const dateDropdown = Dropdown.DropdownDate('test')
 const optionsDropdown = Dropdown.DropdownOptions('test_2')
 
 const expandedChecklist = Dropdown.ExpandedChecklist('test_3')
+
+const richChecklist = Dropdown.RichChecklist('test_4')
