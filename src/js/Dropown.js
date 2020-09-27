@@ -8,21 +8,10 @@ export class Dropdown {
 	static DropdownOptions(id) {
 		return new DropdownOptions(id)
 	}
-	// init() {
-	// 	for (let el of this.dropdownEls) {
-	// 		const dropdownItems = el.querySelector('.dropdown__items')
-	// 		dropdownItems.style.transform = `translate3d(0px, ${el.clientHeight}px, 0px)`
-	// 		console.log(`translate3d(0px, ${el.clientHeight}px, 0px)`)
-	// 		el.addEventListener('click', (e) => {
-	// 			if (el.getAttribute('data-expanded') === 'false') {
-	// 				el.setAttribute('data-expanded', 'true')
-	// 				return dropdownItems.classList.add('dropdown__items-visible')
-	// 			}
-	// 			dropdownItems.classList.remove('dropdown__items-visible')
-	// 			el.setAttribute('data-expanded', 'false')
-	// 		})
-	// 	}
-	// }
+
+	static ExpandedChecklist(id) {
+		return new ExpandedChecklist(id)
+	}
 }
 export default Dropdown
 
@@ -150,6 +139,10 @@ class DropdownOptions extends DropdownBase {
 		this.clearButton.addEventListener('click', () => {
 			this.clear()
 		})
+		this.confirmButton.addEventListener('click', () => {
+			this.emit('confirm', this.options)
+			this.hide()
+		})
 	}
 	#parseOptions() {
 		this.options = new Map()
@@ -224,5 +217,59 @@ class DropdownOptions extends DropdownBase {
 	hide() {
 		this.content.classList.add(this.hideClass)
 		this.visible = false
+	}
+}
+
+class ExpandedChecklist extends DropdownBase {
+	constructor(id) {
+		super()
+		this.wrapper = document.querySelector(`#${id}`)
+		this.baseClass = 'expCheckbox'
+		this.expanded = false
+		this.#init()
+	}
+	#init() {
+		this.expand_btn = this.wrapper.querySelector(`.${this.baseClass}__button`)
+		this.expand_btn.addEventListener('click', () => {
+			if (this.expanded) return this.hide()
+			this.show()
+		})
+
+		this.content = this.wrapper.querySelector(`.${this.baseClass}__content`)
+
+		this.#parseOptions()
+		for (let [name, option] of this.options) {
+			console.log(name)
+			option.checkBox.addEventListener('click', () => {
+				option.checked = !option.checked
+				option.checkBox.classList.toggle(`${this.baseClass}__checkbox_checked`)
+				this.options.set(name, option)
+				this.emit('check', { name, ...option })
+			})
+		}
+	}
+	#parseOptions() {
+		this.options = new Map()
+		let optionEls = this.content.querySelectorAll(`.${this.baseClass}__option`)
+		for (let optionEl of optionEls) {
+			let option = {
+				checkBox: optionEl.querySelector(`.${this.baseClass}__checkbox`),
+				checked: false,
+			}
+			this.options.set(optionEl.getAttribute('name'), option)
+		}
+	}
+	getOption(name) {
+		return this.options.get(name).checked
+	}
+	hide() {
+		this.expand_btn.classList.remove(`${this.baseClass}__button_expanded`)
+		this.content.classList.add(`${this.baseClass}__content_hidden`)
+		this.expanded = false
+	}
+	show() {
+		this.expand_btn.classList.add(`${this.baseClass}__button_expanded`)
+		this.content.classList.remove(`${this.baseClass}__content_hidden`)
+		this.expanded = true
 	}
 }

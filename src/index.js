@@ -45,3 +45,5 @@ datePicker.on('cancel', () => {
 const dateDropdown = Dropdown.DropdownDate('test')
 
 const optionsDropdown = Dropdown.DropdownOptions('test_2')
+
+const expandedChecklist = Dropdown.ExpandedChecklist('test_3')

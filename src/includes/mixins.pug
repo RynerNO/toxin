@@ -50,6 +50,20 @@ mixin dropdownOptions(id, options)
   else
    p ID is required
 
+mixin expCheckbox(id, text, options)
+  if id
+    div(id=id).expCheckbox
+      div.dropdown-btn.expCheckbox__button
+          span.dropdownOptions__text-field=text
+          i.material-icons keyboard_arrow_down
+      div.expCheckbox__content.expCheckbox__content_hidden
+        each option in options  
+          div.expCheckbox__option(name=option.name)
+            div.expCheckbox__checkbox
+              i
+            span=option.text
+  else
+    p ID is required
 //- DATEPICKER
 mixin DatePicker(id)
   div(id=id).datepicker.datepicker_hidden
