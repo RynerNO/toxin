@@ -2,7 +2,7 @@ import 'normalize.css'
 import './styles.sass'
 import imask from 'imask'
 import rangeSlider from 'nouislider'
-import Dropdown from './js/Dropown'
+import Elements from './js/Elements'
 import DatePicker from './js/DatePicker'
 
 const dateMask = imask(document.getElementById('date-mask'), {
@@ -42,10 +42,12 @@ datePicker.on('submit', (date) => {
 datePicker.on('cancel', () => {
 	console.log('cancel')
 })
-const dateDropdown = Dropdown.DropdownDate('test')
+const dateDropdown = Elements.DropdownDate('test')
 
-const optionsDropdown = Dropdown.DropdownOptions('test_2')
+const optionsDropdown = Elements.DropdownOptions('test_2')
 
-const expandedChecklist = Dropdown.ExpandedChecklist('test_3')
+const expandedChecklist = Elements.ExpandedChecklist('test_3')
 
-const richChecklist = Dropdown.RichChecklist('test_4')
+const richChecklist = Elements.RichChecklist('test_4')
+
+const rateButton = Elements.RateButton("test_5")

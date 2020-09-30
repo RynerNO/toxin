@@ -1,6 +1,6 @@
 import DatePicker from './DatePicker'
 import Events from './Events'
-export class Dropdown {
+export class Elements {
 	constructor() {}
 	static DropdownDate(id) {
 		return new DropdownDate(id)
@@ -15,15 +15,18 @@ export class Dropdown {
 	static RichChecklist(id) {
 		return new RichChecklist(id)
 	}
+	static RateButton(id) {
+		return new RateButton(id)
+	}
 }
-export default Dropdown
+export default Elements
 
-class DropdownBase extends Events {
+class ElementsBase extends Events {
 	constructor() {
 		super()
 	}
 }
-class DropdownDate extends DropdownBase {
+class DropdownDate extends ElementsBase {
 	constructor(id) {
 		super()
 		this.id = id
@@ -115,7 +118,7 @@ class DropdownDate extends DropdownBase {
 	}
 }
 
-class DropdownOptions extends DropdownBase {
+class DropdownOptions extends ElementsBase {
 	constructor(id) {
 		super()
 		this.wrapper = document.querySelector(`#${id}`)
@@ -241,7 +244,7 @@ class DropdownOptions extends DropdownBase {
 	}
 }
 
-class ExpandedChecklist extends DropdownBase {
+class ExpandedChecklist extends ElementsBase {
 	constructor(id) {
 		super()
 		this.wrapper = document.querySelector(`#${id}`)
@@ -300,7 +303,7 @@ class ExpandedChecklist extends DropdownBase {
 	}
 }
 
-class RichChecklist extends DropdownBase {
+class RichChecklist extends ElementsBase {
 	constructor(id) {
 		super()
 		this.wrapper = document.querySelector(`#${id}`)
@@ -333,4 +336,57 @@ class RichChecklist extends DropdownBase {
 	getOption(name) {
 		return this.options.get(name).checked
 	}
+}
+
+
+class RateButton extends ElementsBase {
+	constructor(id) {
+		super()
+		this.wrapper = document.querySelector(`#${id}`)
+		this.baseClass = 'rateButton'
+		this.#init()
+	}
+	#init() {
+		this.#parseStars()
+		for(let i =0; i < this.stars.length; i++) {
+			this.stars[i].addEventListener('mouseenter', () => {
+				this.#paintStars(i)
+			})
+			this.stars[i].addEventListener('mouseout', () => {
+				this.#clearStars()
+			})
+			this.stars[i].addEventListener('click', () => {
+				this.selectedRate = i + 1
+				this.emit('rateSelect', this.selectedRate)
+			})
+		}
+	}
+	#parseStars() {
+		let stars = this.wrapper.querySelectorAll('i')
+		this.stars = []
+		for(let star of stars) {
+			this.stars.push(star)
+		}
+	 }
+	 #clearStars() {
+		for(let i =0; i < this.stars.length; i++) {
+			if(i < this.selectedRate) {
+				this.stars[i].innerText = "star"
+				continue
+			}
+			this.stars[i].innerText = "star_border"
+		}
+	 }
+	 #paintStars(idx) {
+		
+		 for(let i = 0; i <= idx; i++) {
+			 console.log("paint")
+			 
+			 this.stars[i].innerText = "star"
+		 }
+	 }
+	 setRate(rate) {
+		 this.selectedRate = rate
+		 this.#clearStars()
+	 }
 }
