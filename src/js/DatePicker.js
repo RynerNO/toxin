@@ -221,7 +221,6 @@ export class DatePicker extends Events {
 			to: {},
 		}
 		this.active = false
-		this.element.classList.add('datepicker_hidden')
 	}
 
 	open(date) {
@@ -239,7 +238,6 @@ export class DatePicker extends Events {
 		}
 		this.active = true
 		this.#genCalendar()
-		this.element.classList.remove('datepicker_hidden')
 	}
 	#init() {
 		this.#genCalendar()

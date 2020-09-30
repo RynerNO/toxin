@@ -43,28 +43,44 @@ class DropdownDate extends DropdownBase {
 			this.#setTextDateTo(date)
 			this.date = date
 			this.emit('change', this.date)
+			this.hide()
 		})
 		calendar.on('cancel', () => {
 			const placeholder = 'ДД.ММ.ГГГГ'
 			if (this.date) {
 				this.#setTextDateFrom(this.date)
 				this.#setTextDateTo(this.date)
+				this.hide()
 				return
 			}
 			this.#setTextDateFrom(placeholder)
 			this.#setTextDateTo(placeholder)
+			this.hide()
+			
 		})
-		const buttons = this.wrapper.querySelectorAll('.DropdownDate__button')
+		this.callendarContainer = this.wrapper.querySelector('.dateDropdown__calendar')
+		const buttons = this.wrapper.querySelectorAll('.dateDropdown__button')
 		for (let button of buttons) {
 			button.addEventListener('click', (e) => {
 				e.preventDefault()
 				if (!calendar.active) {
 					calendar.open(this.date)
-				} else calendar.close()
+					this.show()
+				} else {
+					calendar.close()
+					this.hide()
+				}
 			})
 		}
 	}
-	#setTextDateFrom(date) {
+	show() {
+		this.callendarContainer.classList.remove('dateDropdown__calendar_hidden')
+
+	}
+	hide() {
+		this.callendarContainer.classList.add('dateDropdown__calendar_hidden')
+	}
+ 	#setTextDateFrom(date) {
 		const from = this.wrapper.querySelector(`#${this.id}_from`)
 		if (typeof date === 'string') from.innerText = date
 		if (!date.from) return
@@ -214,11 +230,13 @@ class DropdownOptions extends DropdownBase {
 	}
 	show() {
 		this.content.classList.remove(this.hideClass)
+		
 		this.visible = true
 	}
 
 	hide() {
 		this.content.classList.add(this.hideClass)
+		
 		this.visible = false
 	}
 }
@@ -239,7 +257,10 @@ class ExpandedChecklist extends DropdownBase {
 		})
 
 		this.content = this.wrapper.querySelector(`.${this.baseClass}__content`)
-
+		if(!this.contentHeight) {
+			this.contentHeight = this.content.offsetHeight
+		}
+		this.content.style.height = "0px"
 		this.#parseOptions()
 		for (let [name, option] of this.options) {
 			console.log(name)
@@ -267,12 +288,14 @@ class ExpandedChecklist extends DropdownBase {
 	}
 	hide() {
 		this.expand_btn.classList.remove(`${this.baseClass}__button_expanded`)
-		this.content.classList.add(`${this.baseClass}__content_hidden`)
+		this.content.style.height = `0px`
 		this.expanded = false
 	}
 	show() {
+		
 		this.expand_btn.classList.add(`${this.baseClass}__button_expanded`)
-		this.content.classList.remove(`${this.baseClass}__content_hidden`)
+		this.content.style.height = `${this.contentHeight}px`
+		this.content.style.transition = `all 0.2s linear`
 		this.expanded = true
 	}
 }

@@ -23,7 +23,7 @@ mixin dateDropdown(id)
           div.dropdown-btn.dateDropdown__button
             span(id=to_id) ДД.ММ.ГГГГ
             i.material-icons keyboard_arrow_down
-        div.dateDropdown__calendar
+        div.dateDropdown__calendar.dateDropdown__calendar_hidden
           - var calendar_id = id+'_cal'
           +DatePicker(calendar_id)
   else
@@ -57,7 +57,7 @@ mixin expCheckbox(id, text, options)
       div.dropdown-btn.expCheckbox__button
           span.dropdownOptions__text-field=text
           i.material-icons keyboard_arrow_down
-      div.expCheckbox__content.expCheckbox__content_hidden
+      div.expCheckbox__content
         each option in options  
           div.expCheckbox__option(name=option.name)
             div.checkbox
@@ -82,7 +82,7 @@ mixin richCheckbox(id, text, options)
     p ID is required
 //- DATEPICKER
 mixin DatePicker(id)
-  div(id=id).datepicker.datepicker_hidden
+  div(id=id).datepicker
     div.datepicker__controls
       i.material-icons.datepicker__back arrow_back
       div.datepicker__controls-info
@@ -121,3 +121,17 @@ mixin cardPickDate()
   div.card
     div.card__content
       h1.card__title
+
+
+//- RATE BUTTON
+
+mixin rateButton(id)
+  if id
+    div(id=id).rateButton
+      i.material-icons star_border
+      i.material-icons star_border
+      i.material-icons star_border
+      i.material-icons star_border
+      i.material-icons star_border
+  else  
+    p ID is required
