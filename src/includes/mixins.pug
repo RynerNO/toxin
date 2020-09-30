@@ -135,3 +135,16 @@ mixin rateButton(id)
       i.material-icons star_border
   else  
     p ID is required
+
+
+//- RANGE SLIDER
+mixin rangeSlider(id, title, currency)
+  if id
+    div(id=id).rangeSlider
+      div.rangeSlider__header
+        h3=title 
+        p.rangeSlider__values
+          span(class="rangeSlider__currency")=currency
+      div.rangeSlider__slider
+  else
+    p ID is required

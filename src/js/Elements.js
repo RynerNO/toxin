@@ -1,5 +1,6 @@
 import DatePicker from './DatePicker'
 import Events from './Events'
+import slider from 'nouislider'
 export class Elements {
 	constructor() {}
 	static DropdownDate(id) {
@@ -17,6 +18,9 @@ export class Elements {
 	}
 	static RateButton(id) {
 		return new RateButton(id)
+	}
+	static RangeSlider(id,  options) {
+		return new RangeSlider(id,  options)
 	}
 }
 export default Elements
@@ -389,4 +393,38 @@ class RateButton extends ElementsBase {
 		 this.selectedRate = rate
 		 this.#clearStars()
 	 }
+}
+
+
+class RangeSlider extends ElementsBase {
+	constructor(id, {min, max, start, end, step}) {
+		super()
+		
+		this.wrapper = document.querySelector(`#${id}`)
+		this.baseClass = "rangeSlider"
+		this.slider = slider.create(this.wrapper.querySelector(`.${this.baseClass}__slider`), {
+			start: [start , end],
+			connect: true,
+			step: step,
+			range: {
+				'min': min,
+				'max': max
+			}
+		})
+		this.#init()
+	}
+	#init() {
+	
+		this.valuesEl = this.wrapper.querySelector(`.${this.baseClass}__values`)
+		this.currency = this.wrapper.querySelector(`.${this.baseClass}__currency`).innerText
+		this.slider.on('update', () => {
+			
+			this.#setValues()
+		})
+	}
+	#setValues() {
+		let values = this.slider.get()
+		
+		this.valuesEl.innerText = `${Math.ceil(values[0])}${this.currency} - ${Math.ceil(values[1])}${this.currency}`
+	} 
 }

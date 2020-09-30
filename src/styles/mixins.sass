@@ -402,3 +402,33 @@
     background: -webkit-linear-gradient(#BC9CFF, #8BA4F9)
     -webkit-background-clip: text
     -webkit-text-fill-color: transparent
+
+.rangeSlider
+  &__header
+    display: flex
+    justify-content: space-between
+    padding-bottom: 20px
+  &__values
+    color: $shade-50
+    font-size: 0.75rem
+  &__slider
+    height: 0.375rem
+  & .noUi-handle
+    border-radius: 10px
+    width: 0.75rem
+    height: 0.75rem
+    right: -8px
+    top: -6px
+    border: 2px solid #fff
+    background: linear-gradient(#6FCF97, #66D2EA)
+    box-sizing: content-box
+    box-shadow: none
+    cursor: pointer
+    &:focus
+      outline: none 
+    &::before, &::after
+      display: none
+  & .noUi-base
+    height: 0.375rem
+  & .noUi-connect
+    background: linear-gradient(#6FCF97, #66D2EA)

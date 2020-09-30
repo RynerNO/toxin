@@ -1,7 +1,9 @@
 import 'normalize.css'
+import 'nouislider/distribute/nouislider.min.css'
 import './styles.sass'
+
 import imask from 'imask'
-import rangeSlider from 'nouislider'
+
 import Elements from './js/Elements'
 import DatePicker from './js/DatePicker'
 
@@ -51,3 +53,6 @@ const expandedChecklist = Elements.ExpandedChecklist('test_3')
 const richChecklist = Elements.RichChecklist('test_4')
 
 const rateButton = Elements.RateButton("test_5")
+
+
+const rangeSlider = Elements.RangeSlider("test_6", {min: 1000, max: 16000, start: 5000, end: 15000, step: 1000})
