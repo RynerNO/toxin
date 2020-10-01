@@ -22,6 +22,9 @@ export class Elements {
 	static RangeSlider(id,  options) {
 		return new RangeSlider(id,  options)
 	}
+	static LikeBtn(el) {
+		return new LikeBtn(el)
+	}
 }
 export default Elements
 
@@ -427,4 +430,51 @@ class RangeSlider extends ElementsBase {
 		
 		this.valuesEl.innerText = `${Math.ceil(values[0])}${this.currency} - ${Math.ceil(values[1])}${this.currency}`
 	} 
+}
+
+
+class LikeBtn extends ElementsBase {
+	constructor(el) {
+		super()
+		this.wrapper = el
+		this.baseClass = "likeBtn"
+		this.#init()
+	}
+	#init() {
+		this.liked = this.wrapper.getAttribute("liked") || "false"
+		this.likes = Number(this.wrapper.getAttribute("likes")) || 0
+		this.likesCounter = this.wrapper.querySelector(`span`)
+		this.icon = this.wrapper.querySelector(`i`)
+		this.#setLikesAmmount()
+		this.#setVisual()
+		this.wrapper.addEventListener("click", () => {
+			if(this.liked === "true") {
+				this.likes -= 1
+				this.liked = "false"
+			} else {
+				this.likes += 1
+				this.liked = "true"
+			}
+			this.#setLikesAmmount()
+			this.#setVisual()
+		})
+	}
+	#setLikesAmmount() {
+		this.likesCounter.innerText = this.likes
+	}
+	#setVisual() {
+		if(this.liked === "true") {
+			this.wrapper.classList.add('likeBtn__active')
+			this.likesCounter.style.color = "#BC9CFF"
+			this.icon.style.color = "#BC9CFF"
+			this.icon.innerText = "favorite"
+			
+		} else {
+			this.wrapper.classList.remove('likeBtn__active')
+			this.likesCounter.style.color = "rgba(31, 32, 65, 0.25)"
+			this.icon.style.color = "rgba(31, 32, 65, 0.25)"
+			this.icon.innerText = "favorite_border"
+		
+		}
+	}
 }

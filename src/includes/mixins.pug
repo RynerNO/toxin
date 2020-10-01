@@ -117,10 +117,10 @@ mixin buttonFilledWithArrow(name, type, id)
     button(class="btn" id=type)=name
 
 //- LIKE BUTTON
-mixin like_btn(liked, likes)
-  div.likeBtn
-    i favorite_border
-    span
+mixin likeBtn(liked, likes)
+  div(liked=String(liked) likes=likes).likeBtn
+    i.material-icons favorite_border
+    span=likes
 
 
 
@@ -175,5 +175,10 @@ mixin review(review)
   div.review
     div.review__left-column
       div.review__avatar
-      div.review__likes-button
+        img(src=review.src)
+      div.review__like-button
+        +likeBtn(review.liked, review.likes)
     div.review__right-column
+      p(class="review__title")=review.title
+      p(class="review__time")=review.time
+      p(class="review__text")=review.text

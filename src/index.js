@@ -56,3 +56,9 @@ const rateButton = Elements.RateButton("test_5")
 
 
 const rangeSlider = Elements.RangeSlider("test_6", {min: 1000, max: 16000, start: 5000, end: 15000, step: 1000})
+
+const likeBtns = document.querySelectorAll('.likeBtn')
+
+for(let likeBtn of likeBtns) {
+	Elements.LikeBtn(likeBtn)
+}

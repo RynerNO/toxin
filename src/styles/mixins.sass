@@ -457,4 +457,68 @@
       padding-top: 8px
 
 // LIKE BTN
+.likeBtn
+  width: 2.5rem
+  height: 1.25rem
+  border-radius: 9999px
+  padding-left: 0.125rem
+  padding-right: 0.5625rem
+  display: flex
+  justify-content: space-around
+  align-items: center
+  cursor: pointer
+  user-select: none
+  background: #fff
+  position: relative
+  border: 1px solid $shade-25
   
+  &__active
+    border: none
+    &::after
+      content: ''
+      background: linear-gradient(#BC9CFF 0%,#8BA4F9 100%)
+      position: absolute
+      top: -0.0625rem
+      left: -0.0625rem
+      width: 100%
+      height: 100%
+      z-index: -1
+      border-radius: 9999px
+      padding: 0.0625rem
+  i
+    font-size: 0.625rem
+    color: $shade-25
+  span
+    font-size: 0.625rem
+    color: $shade-25
+
+.review
+  display: flex
+  &__left-column
+    display: flex
+    flex-direction: column
+    align-items: center
+  &__avatar
+    width: 3rem
+    height: 3rem
+    overflow: hidden
+    display: flex
+    align-items: center
+    justify-content: center
+    border-radius: 32px
+    border: 2px solid #FFFFFF
+    filter: drop-shadow(0px 10px 20px rgba(31, 32, 65, 0.1))
+  &__right-column
+    display: flex
+    flex-direction: column
+    padding-left: 0.625rem
+  &__title
+    padding-top: 0.3125rem
+    font-weight: bold
+  &__time
+    padding-top: 0.4375rem
+  &__text
+    padding-top: 0.9375rem
+    line-height: 1.5rem
+  &__like-button
+    padding-top: 0.625rem
