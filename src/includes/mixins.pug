@@ -116,6 +116,14 @@ mixin buttonFilledWithArrow(name, type, id)
   else
     button(class="btn" id=type)=name
 
+//- LIKE BUTTON
+mixin like_btn(liked, likes)
+  div.likeBtn
+    i favorite_border
+    span
+
+
+
 //- CARDS
 mixin cardPickDate() 
   div.card
@@ -148,3 +156,24 @@ mixin rangeSlider(id, title, currency)
       div.rangeSlider__slider
   else
     p ID is required
+
+//- ICON TEXT LIST
+
+mixin iconTextList(items)
+  div.iconTextList
+    each item in items
+      div.iconTextList__item
+        i(class="material-icons")=item.icon
+        div.iconTextList__body
+          p=item.title
+          p=item.text
+
+
+
+//- REVIEW
+mixin review(review)
+  div.review
+    div.review__left-column
+      div.review__avatar
+      div.review__likes-button
+    div.review__right-column
