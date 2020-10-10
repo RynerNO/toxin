@@ -25,6 +25,9 @@ export class Elements {
 	static LikeBtn(el) {
 		return new LikeBtn(el)
 	}
+	static Pagination(id) {
+		return new Pagination(id)
+	}
 }
 export default Elements
 
@@ -476,5 +479,109 @@ class LikeBtn extends ElementsBase {
 			this.icon.innerText = "favorite_border"
 		
 		}
+	}
+}
+
+class Pagination extends ElementsBase {
+	constructor(id) {
+		super()
+		this.wrapper = document.querySelector(`#${id}`)
+		this.baseClass = "pagination"
+		this.#init() 
+	}
+	#init() {
+		
+		this.#reinitPagination()
+		
+		
+
+	}
+	#reinitPagination() {
+		let pages = this.wrapper.getAttribute('pages')
+		let currentPage = +this.wrapper.getAttribute('current-page') || 1
+		this.wrapper.innerHTML = ""
+		let prevPage = ((currentPage - 1) === 0) ? 1 : currentPage - 1
+		let nextPage = ((currentPage + 1) >= pages) ? pages : currentPage + 1
+
+		let prev = document.createElement('span')
+		let next = document.createElement('span')
+		let current = document.createElement('span')
+		let first = document.createElement('span')
+		let last = document.createElement('span')
+		let dots1 = document.createElement('span')
+		let dots2 = document.createElement('span')
+		let arrowNext = document.createElement('i')
+		prev.classList.add(`${this.baseClass}__item`)
+		next.classList.add(`${this.baseClass}__item`)
+		current.classList.add(`${this.baseClass}__item`)
+		first.classList.add(`${this.baseClass}__item`)
+		last.classList.add(`${this.baseClass}__item`)
+		dots1.classList.add(`${this.baseClass}__item`, `${this.baseClass}__dots`)
+		dots2.classList.add(`${this.baseClass}__item`, `${this.baseClass}__dots`)
+		arrowNext.classList.add(`${this.baseClass}__item`, 'material-icons')
+		arrowNext.innerText = "arrow_forward"
+		dots1.innerText = '...'
+		dots2.innerText = '...'
+		first.innerText = 1
+		last.innerText = pages
+		prev.innerText = prevPage
+		current.innerText = currentPage
+		next.innerText = nextPage
+		arrowNext.addEventListener('click', () => {
+			let page = currentPage + 1
+			this.#changePage(page)
+		})
+		prev.addEventListener('click', () => {
+			let page = +prev.innerText
+			this.#changePage(page)
+		})
+		next.addEventListener('click', () => {
+			let page = +next.innerText
+			this.#changePage(page)
+		})
+		last.addEventListener('click', () => {
+			this.#changePage(15)
+		})
+		first.addEventListener('click', () => {
+			this.#changePage(1)
+		})
+		current.classList.add(`${this.baseClass}__current`)
+		if(currentPage == 1) {
+			this.wrapper.appendChild(current)
+			prev.innerText = nextPage
+			next.innerText = nextPage + 1
+			this.wrapper.appendChild(prev)
+			this.wrapper.appendChild(next)
+		}
+		if(prevPage == 1 && currentPage != 1) {
+			this.wrapper.appendChild(prev)
+			this.wrapper.appendChild(current)		
+			this.wrapper.appendChild(next)
+		}
+		if(prevPage != 1) {
+			this.wrapper.appendChild(first)
+			this.wrapper.appendChild(dots1)
+			this.wrapper.appendChild(prev)
+			this.wrapper.appendChild(current)
+			if(currentPage != pages) {
+				this.wrapper.appendChild(next)
+			}
+		}
+		if(nextPage != pages) {
+			this.wrapper.appendChild(dots2)
+			this.wrapper.appendChild(last)
+			
+		}
+		if(currentPage != pages) {
+			this.wrapper.appendChild(arrowNext)
+		}
+		
+	}
+	#changePage(page) {
+		let currentPage = +this.wrapper.getAttribute('current-page') || 1
+		if(currentPage == page) return
+
+		this.wrapper.setAttribute('current-page', page)
+		this.#reinitPagination()
 	}
 }

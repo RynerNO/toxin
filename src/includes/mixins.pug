@@ -103,8 +103,7 @@ mixin DatePicker(id)
       span.datepicker__cancel отменить
       span.datepicker__submit применить
 //- BUTTONS
-
-mixin buttonFilledWithArrow(name, type, id)
+mixin button(name, type, id)
   if type === 'border'
     button(class="btn btn_no-bg" id=id)=name
   else if type === 'text'
@@ -115,7 +114,6 @@ mixin buttonFilledWithArrow(name, type, id)
       i.material-icons.btn__arrow arrow_forward
   else
     button(class="btn" id=type)=name
-
 //- LIKE BUTTON
 mixin likeBtn(liked, likes)
   div(liked=String(liked) likes=likes).likeBtn
@@ -182,3 +180,24 @@ mixin review(review)
       p(class="review__title")=review.title
       p(class="review__time")=review.time
       p(class="review__text")=review.text
+
+//- BULLET LIST
+
+mixin bulletList(items)
+  if items
+    ul.bulletList
+      each item in items
+        li=item
+
+
+//- SUBSCRIPTION
+mixin subscription(id)
+  div.subscription
+    input(type="text" placeholder="Email")
+    i.material-icons.btn__arrow arrow_forward
+
+//- PAGINATION
+
+mixin pagination(id, pages, currentPage)
+  div(id=id, pages=pages, current-page=currentPage).pagination
+    

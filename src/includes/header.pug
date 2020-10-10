@@ -18,7 +18,7 @@ div.header
       name: 'Услуга 4',
       url: '/test'
     }])
-    +buttonFilledWithArrow('ОПЛАТЕ', 'arrow')
+    +button('перейти к оплате', 'arrow')
 
     input(type="text" placeholder="Email")
     input(type="text" id="date-mask")
@@ -84,3 +84,9 @@ div.header
       likes: 12,
       src: "./assets/avatar.png"
     })
+
+    +bulletList(["Нельзя с питомцами", "Без вечеринок и мероприятий", "Время прибытия — после 13:00, а выезд до 12:00"])
+
+    +subscription("test_7")
+
+    +pagination("test_8", 15, 1)

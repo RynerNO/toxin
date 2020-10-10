@@ -62,3 +62,5 @@ const likeBtns = document.querySelectorAll('.likeBtn')
 for(let likeBtn of likeBtns) {
 	Elements.LikeBtn(likeBtn)
 }
+
+const pagination = Elements.Pagination('test_8')

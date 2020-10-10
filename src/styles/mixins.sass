@@ -234,6 +234,7 @@
   cursor: pointer
   font-size: 0.75rem
   font-weight: bold
+  text-transform: uppercase
   color: #fff
   &:hover
     opacity: 0.5
@@ -522,3 +523,75 @@
     line-height: 1.5rem
   &__like-button
     padding-top: 0.625rem
+
+
+// BULLET LIST
+
+.bulletList
+  li
+    
+    list-style: none
+    position: relative
+    display: flex
+    align-items: center
+    margin-top: 5px
+    margin-bottom: 5px
+    &::before
+      content: ""
+      position: absolute
+      left: -1.1875rem
+      width: 0.625rem
+      top: 0.1875rem
+      height: 0.625rem
+      background: $shade-25
+      border-radius: 9999px
+
+
+
+.subscription
+    display: flex
+    align-items: center
+    max-width: 20rem
+    position: relative
+  
+  
+    i
+      right: 0
+      position: absolute
+      color: $purple
+      padding-right: 14px
+      cursor: pointer
+.pagination
+
+  display: flex
+  &__item
+    width: 40px
+    height: 40px
+    display: flex
+    align-items: center
+    justify-content: center
+    color: $shade-50
+    border-radius: 9999px
+    font-size: 0.75rem
+    cursor: pointer
+    user-select: none
+    &:hover
+      color: #fff
+      background: linear-gradient(#BC9CFF 0%,#8BA4F9 100%)
+      font-weight: bold
+  &__current
+    color: #fff
+    background: linear-gradient(#BC9CFF 0%,#8BA4F9 100%)
+    font-weight: bold
+    cursor: auto
+  &__dots
+    cursor: auto
+   
+    &:hover
+      color: $shade-50
+      background: none
+      font-weight: normal
+  i
+    font-size: 1.5rem
+    color: #fff
+    background: linear-gradient(#6FCF97 0%,#66D2EA 100%)
