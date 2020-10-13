@@ -1,12 +1,13 @@
 import 'normalize.css'
 import 'nouislider/distribute/nouislider.min.css'
+
 import './styles.sass'
 
 import imask from 'imask'
 
 import Elements from './js/Elements'
 import DatePicker from './js/DatePicker'
-
+import Slider from './js/Slider'
 const dateMask = imask(document.getElementById('date-mask'), {
 	mask: Date,
 	blocks: {
@@ -64,3 +65,20 @@ for(let likeBtn of likeBtns) {
 }
 
 const pagination = Elements.Pagination('test_8')
+
+const toggle = Elements.Toggle('test_9', false)
+
+const sliders = document.querySelectorAll('.slider')
+
+for(const slider of sliders) {
+	new Slider(slider, {
+		autoplay: false
+	})
+}
+const roomCards = document.querySelectorAll('.roomCard')
+
+for(let i = 0; i < roomCards.length; i++) {
+	const rate = roomCards[i].getAttribute('rate')
+	const rateButton = roomCards[i].querySelector('.rateButton')
+	Elements.RateButton(rateButton, rate)
+}

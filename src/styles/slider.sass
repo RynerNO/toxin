@@ -1,0 +1,76 @@
+.slider 
+  width: 100%
+  height: 100%
+  position: relative
+  overflow: hidden
+  &__controls
+    position: absolute
+    width: 100%
+    height: 100%
+    pointer-events: none
+    z-index: 20
+  &__arrow
+    display: flex
+    position: absolute
+    justify-content: center
+    align-items: center
+    cursor: pointer
+    pointer-events: auto
+    top: calc(50% - 12px)
+    i
+      font-size: 1.5rem
+      color: #fff
+      user-select: none
+          
+    &-left
+      left: 12px
+      transform: rotate(90deg)
+    &-right
+      right: 12px
+      transform: rotate(-90deg)
+    span
+      border: solid white
+      border-width: 0 2px 2px 0
+      display: inline-block
+      padding: 4px
+      position: absolute
+      top: calc(50% - 7px)
+  &__dots
+    display: flex
+    position: absolute
+    bottom: 10px
+    right: 10px
+    pointer-events: auto
+    i
+      width: 8px
+      height: 8px
+      border: 1px solid #fff
+      margin: 2px
+      box-sizing: border-box
+      border-radius: 9999px
+      cursor: pointer
+    &_active
+      border: none
+      background: #fff
+  &__slides
+    width: 100%
+    height: 100%
+    display: flex
+    flex-wrap: nowrap
+    position: relative
+    left: 0px 
+    cursor: grab
+    &:active 
+      cursor: grabbing
+  &__slide
+    width: 16.875rem
+    height: 9.4375rem
+    flex-shrink: 0
+    display: flex
+    user-select: none
+
+    img:nth-child(1)
+      
+      object-fit: cover
+      pointer-events: none
+      user-select: none

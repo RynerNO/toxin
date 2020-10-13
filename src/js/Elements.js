@@ -16,8 +16,8 @@ export class Elements {
 	static RichChecklist(id) {
 		return new RichChecklist(id)
 	}
-	static RateButton(id) {
-		return new RateButton(id)
+	static RateButton(id, rate) {
+		return new RateButton(id, rate)
 	}
 	static RangeSlider(id,  options) {
 		return new RangeSlider(id,  options)
@@ -27,6 +27,9 @@ export class Elements {
 	}
 	static Pagination(id) {
 		return new Pagination(id)
+	}
+	static Toggle(id, selected)  {
+		return new Toggle(id, selected)
 	}
 }
 export default Elements
@@ -350,10 +353,11 @@ class RichChecklist extends ElementsBase {
 
 
 class RateButton extends ElementsBase {
-	constructor(id) {
+	constructor(id, rate) {
 		super()
-		this.wrapper = document.querySelector(`#${id}`)
+		this.wrapper = typeof id === 'string' ? document.querySelector(`#${id}`) : id
 		this.baseClass = 'rateButton'
+		this.selectedRate = rate || 0
 		this.#init()
 	}
 	#init() {
@@ -370,6 +374,7 @@ class RateButton extends ElementsBase {
 				this.emit('rateSelect', this.selectedRate)
 			})
 		}
+		this.#clearStars()
 	}
 	#parseStars() {
 		let stars = this.wrapper.querySelectorAll('i')
@@ -583,5 +588,30 @@ class Pagination extends ElementsBase {
 
 		this.wrapper.setAttribute('current-page', page)
 		this.#reinitPagination()
+	}
+}
+
+
+class Toggle extends ElementsBase {
+	constructor(id, selected) {
+		super()
+		this.wrapper = document.querySelector(`#${id}`)
+		this.baseClass = "toggle"
+		this.selected = (selected !== undefined) ? selected : false
+		this.#init()
+	}
+	#init() {
+		this.button = this.wrapper.querySelector(`.${this.baseClass}__button`)
+		this.button.addEventListener('click', () => {
+			this.#toggle()
+		})
+		if(this.selected) {
+			button.classList.add(`${this.baseClass}__button_active`)
+		}
+	}
+	#toggle() {
+		this.selected = !this.selected
+		this.button.classList.toggle(`${this.baseClass}__button_active`)
+		this.emit('change', this.selected)
 	}
 }

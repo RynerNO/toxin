@@ -49,7 +49,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.(png|jpe?g|gif|svg|webp)$/i,
+        test: /\.(png|jpe?g|gif|svg|webp|woff2)$/i,
         loader: 'file-loader',
         options: {
           outputPath: 'assets',

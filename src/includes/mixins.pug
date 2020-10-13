@@ -75,11 +75,19 @@ mixin richCheckbox(id, text, options)
           div.richCheckbox__option(name=option.name)
             div.checkbox
                 i
-            div.richCheckbox__option-text
-              p=option.title
-              p=option.text
+            if(option.text)
+              div.richCheckbox__option-text-rich
+                p=option.title
+                p=option.text
+            else
+              div.richCheckbox__option-text
+                p=option.title
+                p=option.text
   else
     p ID is required
+
+
+
 //- DATEPICKER
 mixin DatePicker(id)
   div(id=id).datepicker
@@ -201,3 +209,45 @@ mixin subscription(id)
 mixin pagination(id, pages, currentPage)
   div(id=id, pages=pages, current-page=currentPage).pagination
     
+//- TOGGLE
+mixin toggle(id, text)
+  div(id=id).toggle
+    div.toggle__button
+    div(class="toggle__text")=text
+    
+
+//- SLIDER
+mixin slider(images)
+  div.slider
+    div.slider__controls
+      div.slider__arrow-left.slider__arrow
+        i.material-icons expand_more
+      div.slider__arrow-right.slider__arrow
+        i.material-icons expand_more
+      div.slider__dots
+    div.slider__slides
+      each image in images
+        div.slider__slide
+          img(src=image)
+      
+
+//- ROOM CARD
+
+mixin roomCard(room)
+  div.roomCard(rate=room.rate)
+    div.roomCard__header
+      +slider(room.images)
+    div.roomCard__footer
+      div.roomCard__footer-top
+        p 
+          span=room.number
+        p
+          span=room.price
+          span  в сутки
+      div.roomCard__footer-line
+      div.roomCard__footer-bottom
+        - var id_rate = "room_rate"
+        +rateButton(id_rate)
+        p
+          span=room.reviews
+          span  Отзывов
