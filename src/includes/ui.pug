@@ -1,0 +1,83 @@
+   
+    +button('перейти к оплате', 'arrow')
+
+    input(type="text" placeholder="Email")
+    input(type="text" id="date-mask")
+
+    +DatePicker('datepicker')
+
+    +dateDropdown('test')
+
+    +dropdownOptions('test_2',[ 
+    {
+      text: "Взрослые",
+      name: "adults"
+    },
+     {
+      text: "Дети",
+      name: "children"
+    }
+    ])
+    +expCheckbox('test_3', "Expandable checkbox list", [{
+      text: "Завтрак",
+      name: "breakfest"
+    }, {
+      text: "Завтрак3",
+      name: "breakfest2"
+    }, {
+      text: "Завтрак2",
+      name: "breakfest3"
+    }])
+
+    +richCheckbox('test_4', "Rich checkbox list", [{
+      title: "Широкий коридор",
+      text: "Ширина коридоров в номере не менее 91 см.",
+      name: "breakfest"
+    }, {
+      title: "Помощник для инвалидов",
+      text: "На 1 этаже вас встретит специалист  и проводит до номера.",
+      name: "breakfest2"
+    }])
+
+    +rateButton('test_5')
+
+    +rangeSlider('test_6', "Range slider", "₽")
+
+    +iconTextList([
+      {
+        icon: "insert_emoticon",
+        title: "Комфорт",
+        text: "Шумопоглощающие стены",
+      },
+      {
+        icon: "location_city",
+        title: "Удобство",
+        text: "Окно в каждой из спален"
+      }
+    ])
+    +likeBtn(false, 5)
+
+    +review({
+      title: "Мурад Сарафанов",
+      time: "5 дней назад",
+      text: "Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.",
+      liked: true,
+      likes: 12,
+      src: "./assets/avatar.png"
+    })
+
+    +bulletList(["Нельзя с питомцами", "Без вечеринок и мероприятий", "Время прибытия — после 13:00, а выезд до 12:00"])
+
+    +subscription("test_7")
+
+    +pagination("test_8", 15, 1)
+
+    +toggle('test_9', "Получать спецпредложения")
+
+    +roomCard({
+      price: 9900,
+      number: 840,
+      reviews: 65,
+      rate: 4,
+      images: ['./assets/room_10.png', './assets/room_2.png', './assets/room_4.png', './assets/room_5.png']
+    })

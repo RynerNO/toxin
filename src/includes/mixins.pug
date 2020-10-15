@@ -2,7 +2,7 @@
 
 mixin dropdownControl(name, items)
   div.dropdown(data-expanded="false")
-    span(class="dropdown__name")= name
+    span(class="dropdown__name" title=name)= name
     i.material-icons.dropdown__arrow keyboard_arrow_down
     ul.dropdown__items
       each item in items
@@ -199,7 +199,7 @@ mixin bulletList(items)
 
 
 //- SUBSCRIPTION
-mixin subscription(id)
+mixin subscription()
   div.subscription
     input(type="text" placeholder="Email")
     i.material-icons.btn__arrow arrow_forward

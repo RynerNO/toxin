@@ -1,0 +1,51 @@
+include ./mixins.pug
+div.footer
+    div.footer__top
+        div.footer__logo
+            img(src="./assets/logo.svg")
+            p Бронирование номеров в лучшем отеле 2019 года по версии ассоциации «Отельные взгляды»
+        div.footer__nav-container
+            div.footer__nav
+                h3 Навигация
+                ul
+                    li 
+                        a(href="#" title="O нас") О нас
+                    li 
+                        a(href="#" title="Новости") Новости
+                    li 
+                        a(href="#" title="Служба поддержки") Служба поддержки
+                    li 
+                        a(href="#" title="Услуги") Услуги
+            div.footer__nav
+                h3 О нас
+                ul
+                    li 
+                        a(href="#" title="O сервисе") О сервисе
+                    li 
+                        a(href="#" title="Наша команда") Наша команда
+                    li 
+                        a(href="#" title="Вакансии") Вакансии
+                    li 
+                        a(href="#" title="Инвесторы") Инвесторы
+            div.footer__nav
+                h3 Служба поддержки
+                ul
+                    li 
+                        a(href="#" title="Соглашения") Соглашения
+                    li 
+                        a(href="#" title="Сообщества") Сообщества
+                    li 
+                        a(href="#" title="Связь с нами") Связь с нами
+        div.footer__subscribe
+            h3 Подписка
+            p Получайте специальные предложения и новости сервиса
+            +subscription
+    div.footer__bottom
+        p Copyright © 2020 Toxin отель. Все права зачищены.
+        div
+            a(href="#")
+                span(class="iconify" data-icon="fa-brands:twitter" data-inline="false" style="color:#BC9CFF; font-size: 24px")
+            a(href="#")
+                span(class="iconify" data-icon="fa-brands:facebook-square" data-inline="false" style="color:#BC9CFF; font-size: 24px")
+            a(href="#")
+                span( class="iconify" data-icon="fa-brands:instagram" data-inline="false" style="color:#BC9CFF; font-size: 24px")

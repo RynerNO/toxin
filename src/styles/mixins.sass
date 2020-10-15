@@ -6,10 +6,22 @@
   position: relative
   color: $shade-50
   cursor: pointer
+  span
+    color: $shade-50
+    &::before 
+      display: block
+      content: attr(title)
+      font-weight: bold
+      height: 0
+      overflow: hidden
+      visibility: hidden
+    &:hover
+      color: $shade-75
+      font-weight: bold
   &__items
     visibility: hidden
     opacity: 0
-    top: 0
+    top: 100%
     left: 0
     pointer-events: none
     position: absolute

@@ -1,0 +1,37 @@
+@import './colors'
+
+.header
+    display: flex
+    justify-content: space-between
+    width: 100%
+    padding-left: 140px
+    padding-right: 140px
+    padding-top: 15px
+    padding-bottom: 15px
+    box-shadow: 0px 10px 20px rgba(31, 32, 65, 0.05)
+    &__controls
+        display: flex
+        align-items: center
+        
+        &-item
+            padding-left: 0.625rem
+            padding-right: 0.625rem
+            
+            button
+                padding: 0.75rem 1.21rem
+            a
+                color: $shade-50
+            a::before 
+                display: block
+                content: attr(title)
+                font-weight: bold
+                height: 0
+                overflow: hidden
+                visibility: hidden
+
+         
+                
+            &:hover
+                a
+                    color: $shade-75
+                    font-weight: bold
