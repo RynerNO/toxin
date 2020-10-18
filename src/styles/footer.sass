@@ -5,22 +5,27 @@
     &__top
         display: grid
         grid-template-columns: 1fr 2fr 1fr
-        padding-left: 140px
-        padding-right: 140px
+        margin: 0 auto
+        max-width: 80%
         padding-top: 100px
         
-        border-bottom: 1px solid $shade-10
+        
         @media(max-width: 1370px)
             grid-template-columns: 1fr 2fr   
         @media(max-width: 930px)
-                border-bottom: none
                 padding-bottom: 0px
                 grid-template-columns: 1fr
                 padding-left: 0px
                 padding-right: 0px
+    &__underline
+        width: 100%
+        height: 1px 
+        background: $shade-10
+        @media(max-width: 930px)
+            display: none
     &__bottom
-        padding-left: 140px
-        padding-right: 140px
+        margin: 0 auto
+        max-width: 80%
         box-shadow: 0px 10px 20px rgba(31, 32, 65, 0.05)
         display: flex
         justify-content: space-between

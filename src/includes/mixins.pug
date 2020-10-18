@@ -1,14 +1,5 @@
 //- DROPDOWNS
 
-mixin dropdownControl(name, items)
-  div.dropdown(data-expanded="false")
-    span(class="dropdown__name" title=name)= name
-    i.material-icons.dropdown__arrow keyboard_arrow_down
-    ul.dropdown__items
-      each item in items
-        li(class="dropdown__item" )
-          a(href=item.url)= item.name
-
 
 mixin dateDropdown(id)
   if id 
@@ -16,25 +7,50 @@ mixin dateDropdown(id)
       div.dateDropdown__datepicker-container
         div.dateDropdown__buttons
           - var from_id = id+'_from'
-          div.dropdown-btn.dateDropdown__button
-            span(id=from_id) ДД.ММ.ГГГГ
-            i.material-icons keyboard_arrow_down
+          div
+            h3 Прибытие
+            div.dropdown-btn.dateDropdown__button
+              span(id=from_id) ДД.ММ.ГГГГ
+              i.material-icons keyboard_arrow_down
           - var to_id = id+'_to'
-          div.dropdown-btn.dateDropdown__button
-            span(id=to_id) ДД.ММ.ГГГГ
-            i.material-icons keyboard_arrow_down
+          div
+            h3 Выезд
+            div.dropdown-btn.dateDropdown__button
+              span(id=to_id) ДД.ММ.ГГГГ
+              i.material-icons keyboard_arrow_down
         div.dateDropdown__calendar.dateDropdown__calendar_hidden
           - var calendar_id = id+'_cal'
-          +DatePicker(calendar_id)
+          div(id=calendar_id).datepicker
+            div.datepicker__controls
+              i.material-icons.datepicker__back arrow_back
+              div.datepicker__controls-info
+                
+              i.material-icons.datepicker__forward arrow_forward
+            div.datepicker__calendar
+              div.datepicker__dayNames
+                span пн
+                span вт
+                span ср
+                span чт
+                span пт
+                span сб
+                span вс
+              div.datepicker__dayNumbers
+                
+            div.datepicker__buttons
+              span.datepicker__cancel отменить
+              span.datepicker__submit применить
   else
    p ID is required
 
-mixin dropdownOptions(id, options) 
+mixin dropdownOptions(id, title, text,  options) 
   if id 
     div(id=id).dropdownOptions
-      div.dropdown-btn.dropdownOptions__button
-        span.dropdownOptions__text-field Сколько гостей
-        i.material-icons keyboard_arrow_down
+      div(style="width:100%")
+        h3=title
+        div.dropdown-btn.dropdownOptions__button
+          span.dropdownOptions__text-field=text
+          i.material-icons keyboard_arrow_down
       div.dropdownOptions__content.dropdownOptions_hidden
         each option in options  
           div.dropdownOptions__option(name=option.name)
@@ -89,27 +105,8 @@ mixin richCheckbox(id, text, options)
 
 
 //- DATEPICKER
-mixin DatePicker(id)
-  div(id=id).datepicker
-    div.datepicker__controls
-      i.material-icons.datepicker__back arrow_back
-      div.datepicker__controls-info
-        
-      i.material-icons.datepicker__forward arrow_forward
-    div.datepicker__calendar
-      div.datepicker__dayNames
-        span пн
-        span вт
-        span ср
-        span чт
-        span пт
-        span сб
-        span вс
-      div.datepicker__dayNumbers
-        
-    div.datepicker__buttons
-      span.datepicker__cancel отменить
-      span.datepicker__submit применить
+
+  
 //- BUTTONS
 mixin button(name, type, id)
   if type === 'border'
@@ -130,11 +127,7 @@ mixin likeBtn(liked, likes)
 
 
 
-//- CARDS
-mixin cardPickDate() 
-  div.card
-    div.card__content
-      h1.card__title
+
 
 
 //- RATE BUTTON

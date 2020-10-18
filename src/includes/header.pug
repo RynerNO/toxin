@@ -5,30 +5,39 @@ div.header
     div.header__controls-item
       a(href="#" title="О нас") О нас
     div.header__controls-item
-      +dropdownControl('Услуги', [{
-        name: 'Услуга 1',
-        url: '#'
-      },
-      {
-        name: 'Услуга 2',
-        url: '#'
-      },
-      ])
+      a(href="#" title="Услуги") Услуги
     div.header__controls-item
       a(href="#" title="Вакансии") Вакансии
     div.header__controls-item
       a(href="#" title="Новости") Новости
     div.header__controls-item
-      +dropdownControl('Соглашения', [{
-          name: 'Соглашение 1',
-          url: '#'
-        },
-        {
-          name: 'Соглашение 2',
-          url: '#'
-        },
-        ])
+      a(href="#" title="Соглашения") Соглашения
     div.header__controls-item
       +button('войти', 'border')
     div.header__controls-item
       +button('зарегистрироваться')
+  div.header__mobile-menu
+    div.header__mobile-menu-top
+      img(src="./assets/logo.svg")
+      button
+        i.material-icons close
+    div.header__mobile-menu-bottom
+      div.header__mobile-menu-controls
+        div.header__controls-item
+          a(href="#" title="О нас") О нас
+        div.header__controls-item
+          a(href="#" title="Услуги") Услуги
+        div.header__controls-item
+          a(href="#" title="Вакансии") Вакансии
+        div.header__controls-item
+          a(href="#" title="Новости") Новости
+        div.header__controls-item
+          a(href="#" title="Соглашения") Соглашения
+      div.header__mobile-menu-buttons
+        div.header__controls-item
+          +button('войти', 'border')
+        div.header__controls-item
+          +button('зарегистрироваться')
+  button.header__mobile-button Меню
+    i
+      span

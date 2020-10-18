@@ -38,14 +38,7 @@ import Slider from './js/Slider'
 // 	console.log(dateMask.value)
 // })
 
-// const datePicker = new DatePicker('#datepicker')
-// datePicker.on('submit', (date) => {
-// 	console.log(date)
-// })
-// datePicker.on('cancel', () => {
-// 	console.log('cancel')
-// })
-// const dateDropdown = Elements.DropdownDate('test')
+
 
 // const optionsDropdown = Elements.DropdownOptions('test_2')
 
@@ -83,12 +76,15 @@ import Slider from './js/Slider'
 // 	Elements.RateButton(rateButton, rate)
 // }
 
-const dropdowns = document.querySelectorAll(".dropdown")
+const mobileMenu = document.querySelector('.header__mobile-menu')
+const mobileMenuButton = document.querySelector('.header__mobile-button')
+mobileMenuButton.addEventListener('click', () => {
+	mobileMenu.classList.toggle('header__mobile-menu_visible')
+})
+const mobileMenuCloseButton = mobileMenu.querySelector('.header__mobile-menu-top button')
+mobileMenuCloseButton.addEventListener('click', () => {
+	mobileMenu.classList.toggle('header__mobile-menu_visible')
+})
 
-for(let dropdown of dropdowns) {
-	const items = dropdown.querySelector('.dropdown__items')
-	dropdown.addEventListener('click', () => {
-		items.classList.toggle('dropdown__items-visible')
-	})
-	
-}
+const dateDropdown = Elements.DropdownDate('landing_date')
+const optionsDropdown = Elements.DropdownOptions('landing_options')

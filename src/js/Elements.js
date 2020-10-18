@@ -149,13 +149,13 @@ class DropdownOptions extends ElementsBase {
 	#init() {
 		this.content = this.wrapper.querySelector(`.${this.baseClass}__content`)
 
-		let dropdown_btn = this.wrapper.querySelector(`.${this.baseClass}__button`)
-		dropdown_btn.addEventListener('click', (e) => {
+		this.dropdown_btn = this.wrapper.querySelector(`.${this.baseClass}__button`)
+		this.dropdown_btn.addEventListener('click', (e) => {
 			e.preventDefault()
 			if (this.visible) return this.hide()
 			this.show()
 		})
-		this.dropdownBtnText = dropdown_btn.querySelector('span')
+		this.dropdownBtnText = this.dropdown_btn.querySelector('span')
 		this.deffaultText = this.dropdownBtnText.innerText
 		this.#parseOptions()
 		this.#checkOptions()
@@ -163,7 +163,7 @@ class DropdownOptions extends ElementsBase {
 			this.#checkOptions()
 		})
 		for (let [name, option] of this.options) {
-			console.log(name)
+			
 			option.buttonDecr.addEventListener('click', () => {
 				this.#decrOption(name)
 			})
@@ -183,14 +183,16 @@ class DropdownOptions extends ElementsBase {
 		this.options = new Map()
 		let optionsEls = this.wrapper.querySelectorAll(`.${this.baseClass}__option`)
 		for (const optionEl of optionsEls) {
+	
+			
 			this.options.set(optionEl.getAttribute('name'), {
 				count: 0,
-				text: optionEl.querySelector(`.${this.baseClass}__option-text`)
-					.innerText,
+				text: optionEl.querySelector(`.${this.baseClass}__option-text`).textContent,
 				buttonDecr: optionEl.querySelector(`.${this.baseClass}__decr`),
 				counter: optionEl.querySelector(`.${this.baseClass}__option-counter`),
 				buttonIncr: optionEl.querySelector(`.${this.baseClass}__incr`),
 			})
+			
 		}
 	}
 	#checkOptions() {
@@ -221,6 +223,7 @@ class DropdownOptions extends ElementsBase {
 		option.count += 1
 
 		option.counter.innerText = option.count
+	
 		this.options.set(name, option)
 		this.emit('change', name)
 	}
@@ -246,13 +249,13 @@ class DropdownOptions extends ElementsBase {
 	}
 	show() {
 		this.content.classList.remove(this.hideClass)
-		
+		this.dropdown_btn.classList.add(`${this.baseClass}__button_active`)
 		this.visible = true
 	}
 
 	hide() {
 		this.content.classList.add(this.hideClass)
-		
+		this.dropdown_btn.classList.remove(`${this.baseClass}__button_active`)
 		this.visible = false
 	}
 }
@@ -279,7 +282,7 @@ class ExpandedChecklist extends ElementsBase {
 		this.content.style.height = "0px"
 		this.#parseOptions()
 		for (let [name, option] of this.options) {
-			console.log(name)
+	
 			option.checkBox.addEventListener('click', () => {
 				option.checked = !option.checked
 				option.checkBox.classList.toggle(`checkbox_checked`)

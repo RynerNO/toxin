@@ -7,6 +7,34 @@ html(lang="ru")
   body
     header
       include ./includes/header.pug
+
+    main
+      div.landing
+        div
+        img(src="assets/main_bg.jpg").landing__bg
+        div.landing__card
+          h1 Найдем номера под ваши пожелания
+          div.landing__date
+            +dateDropdown('landing_date')
+          div.landing__options
+            +dropdownOptions('landing_options', 'Гости', 'Сколько гостей', [
+              {
+                name: 'adult',
+                text: 'Взрослые'
+              },
+              {
+                name: 'kids',
+                text: 'Дети'
+              },
+              {
+                name: 'baby',
+                text: 'Младенцы'
+              }
+            ])
+          +button('Подобрать номер', 'arrow')
+        div.landing__text
+          p Лучшие номера для вашей работы, отдыха и просто вдохновения
     footer
       include ./includes/footer.pug
+
     script(src="https://code.iconify.design/1/1.0.7/iconify.min.js")

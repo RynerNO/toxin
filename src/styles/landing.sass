@@ -1,0 +1,56 @@
+@import './colors'
+.landing
+    overflow: hidden
+    position: relative
+    max-width: 80%
+    margin: 0 auto
+    @media(max-width: 1444px)
+        width: 100%
+        max-width: 100%
+    &__bg
+       width: 100%
+       
+       min-width: 90rem
+    &__card
+        position: absolute
+        top: 4.375rem
+        left: 10%
+        width: 100%
+        max-width: 23.75rem
+        display: flex
+        flex-direction: column
+        align-items: center
+        background: #FFFFFF
+        border: 1px solid $shade-25
+        box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2)
+        border-radius: 4px
+        padding: 1.875rem
+        @media(max-width: 470px)
+            left: calc( 50% - 11.875rem )
+        @media(max-width: 380px)
+            left: 0px
+            padding-right: 10px
+            padding-left: 10px
+            
+        h1
+            padding-bottom: 1.25rem
+    &__date
+        width: 100%
+        display: flex
+        justify-content: center
+        padding-bottom: 1.25rem
+    &__options
+        padding-bottom: 1.875rem
+        width: 100%
+        display: flex
+        justify-content: center
+    &__text
+        position: absolute
+        bottom: 1.125rem
+        right: 8.75rem
+        max-width: 18.5625rem
+        @media(max-width: 470px)
+            right: calc( 50% - 148.5px )
+        p
+            text-align: right
+      

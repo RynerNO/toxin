@@ -20,7 +20,7 @@ export class DatePicker extends Events {
 		return new Date(year, month + 1, 0).getDate()
 	}
 
-	// Helper function fro getCalendar method
+	// Helper function for getCalendar method
 	#addDays(start, count, element, decor) {
 		for (let i = 0; i < count; i++) {
 			const newEl = document.createElement('span')
@@ -154,6 +154,7 @@ export class DatePicker extends Events {
 		const dayNumbersElement = this.element.querySelector(
 			'.datepicker__dayNumbers'
 		)
+		console.log(dayNumbersElement)
 		const daysInCurrentMonth = this.#amountDaysInMonth(this.month, this.year)
 		const daysInPreviousMonth = this.#amountDaysInMonth(
 			this.month - 1,
