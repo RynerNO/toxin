@@ -31,6 +31,9 @@ export class Elements {
 	static Toggle(id, selected)  {
 		return new Toggle(id, selected)
 	}
+	static Radio(selector, selected) {
+		return new Radio(selector, selected)
+	}
 }
 export default Elements
 
@@ -656,5 +659,39 @@ class Toggle extends ElementsBase {
 		this.selected = !this.selected
 		this.button.classList.toggle(`${this.baseClass}__button_active`)
 		this.emit('change', this.selected)
+	}
+}
+
+class Radio extends ElementsBase {
+	constructor(selector, selected) {
+		super()
+		this.wrapper = typeof selector === 'string' ? document.querySelector(selector) : selector
+		this.baseClass = "radio"
+		this.selected = (selected !== undefined) ? selected : false
+		this.#init()
+	}
+	#init() {
+	 	if(!this.wrapper) return
+		this.options = this.wrapper.querySelectorAll('.radio__el')
+		for(let option of this.options) {
+			if(this.selected) {
+				let name = option.getAttribute('name')
+				if(name === this.selected) {
+					this.#selectOption(option)
+				}
+			}
+			option.addEventListener('click', () => {
+				this.#selectOption(option)
+			})
+		}
+		
+	}
+	#selectOption(option) {
+		if(this.currentOption) {
+			this.currentOption.querySelector(`.${this.baseClass}__circle`).classList.toggle(`${this.baseClass}__circle_active`)
+		}
+		
+		option.querySelector(`.${this.baseClass}__circle`).classList.toggle(`${this.baseClass}__circle_active`)
+		this.currentOption = option
 	}
 }

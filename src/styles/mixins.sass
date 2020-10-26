@@ -727,3 +727,45 @@
     max-width: 14.375rem
     margin-top: 10px
     margin-bottom: 8px
+
+.radio
+  display: flex
+  justify-content: space-between
+  
+  &__el
+    display: flex
+    align-items: center
+    cursor: pointer
+  &__text
+    padding-left: 9px
+  &__circle
+    width: 20px
+    height: 20px
+    border-radius: 9999px
+    display: block
+    position: relative
+    &::after
+        content: ''
+        position: absolute
+        width: 20px
+        height: 20px
+        border: 1px solid $shade-25
+        border-radius: 9999px
+    &_active
+      &::before
+        content: ''
+        position: absolute
+        width: 11px
+        height: 11px
+        background: $purple
+        border-radius: 9999px
+        left: calc(50% - 5px)
+        top: calc(50% - 5px)
+
+      &::after
+        content: ''
+        position: absolute
+        width: 19px
+        height: 19px
+        border: 1px solid $purple
+        border-radius: 9999px

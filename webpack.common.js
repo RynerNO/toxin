@@ -29,6 +29,18 @@ module.exports = {
     cache: true,
     hash: true,
     filename: 'room.html'
+  }), new HtmlWebpackPlugin({
+    template: './src/register.pug',
+    inject: true,
+    cache: true,
+    hash: true,
+    filename: 'register.html'
+  }), new HtmlWebpackPlugin({
+    template: './src/login.pug',
+    inject: true,
+    cache: true,
+    hash: true,
+    filename: 'login.html'
   })],
   
   module: {

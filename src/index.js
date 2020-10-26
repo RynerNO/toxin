@@ -10,32 +10,32 @@ import DatePicker from './js/DatePicker'
 import Slider from './js/Slider'
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
-// const dateMask = imask(document.getElementById('date-mask'), {
-// 	mask: Date,
-// 	blocks: {
-// 		d: {
-// 			mask: IMask.MaskedRange,
-// 			from: 1,
-// 			to: 31,
-// 			maxLength: 2,
-// 			placeholderChar: 'Д',
-// 		},
-// 		m: {
-// 			mask: IMask.MaskedRange,
-// 			from: 1,
-// 			to: 12,
-// 			maxLength: 2,
-// 			placeholderChar: 'М',
-// 		},
-// 		Y: {
-// 			mask: IMask.MaskedRange,
-// 			from: 1900,
-// 			to: 9999,
-// 			placeholderChar: 'Г',
-// 		},
-// 	},
-// 	lazy: false,
-// })
+const dateMask = imask(document.getElementById('date-mask'), {
+	mask: Date,
+	blocks: {
+		d: {
+			mask: IMask.MaskedRange,
+			from: 1,
+			to: 31,
+			maxLength: 2,
+			placeholderChar: 'Д',
+		},
+		m: {
+			mask: IMask.MaskedRange,
+			from: 1,
+			to: 12,
+			maxLength: 2,
+			placeholderChar: 'М',
+		},
+		Y: {
+			mask: IMask.MaskedRange,
+			from: 1900,
+			to: 9999,
+			placeholderChar: 'Г',
+		},
+	},
+	lazy: false,
+})
 // document.getElementById('date-mask').addEventListener('input', () => {
 // 	console.log(dateMask.value)
 // })
@@ -73,7 +73,7 @@ const sliders = document.querySelectorAll('.slider')
  	const rateButton = roomCards[i].querySelector('.rateButton')
 	Elements.RateButton(rateButton, rate)
  }
-
+const radio = Elements.Radio('.radio', "male")
 const mobileMenu = document.querySelector('.header__mobile-menu')
 const mobileMenuButton = document.querySelector('.header__mobile-button')
 mobileMenuButton.addEventListener('click', () => {
@@ -96,8 +96,9 @@ const richChecklist = Elements.RichChecklist('checkbox_rich')
 const optionsDropdownComf = Elements.DropdownOptions('options_comfort')
 const expandedChecklist = Elements.ExpandedChecklist('checkbox_exp')
 const pagination = Elements.Pagination('pagination')
-
-const chart = am4core.create("room__chart", am4charts.PieChart);
+const chart_el = document.querySelector('.room_chart')
+if(chart_el) {
+	const chart = am4core.create("room__chart", am4charts.PieChart);
 const gradient_yellow = new am4core.LinearGradient();
 const gradient_purple = new am4core.LinearGradient();
 const gradient_green = new am4core.LinearGradient();
@@ -186,3 +187,4 @@ label2.paddingTop = "25px"
 label2.fontWeight = "bold"
 label2.fill = am4core.color("#BC9CFF");
 label2.fontFamily = "Montserrat"
+}

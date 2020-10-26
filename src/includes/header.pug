@@ -14,9 +14,11 @@ div.header
     div.header__controls-item
       a(href="#" title="Соглашения") Соглашения
     div.header__controls-item
-      +button('войти', 'border')
+      a(href="/login.html")
+        +button('войти', 'border')
     div.header__controls-item
-      +button('зарегистрироваться')
+      a(href="/register.html")
+        +button('зарегистрироваться')
   div.header__mobile-menu
     div.header__mobile-menu-top
       img(src="./assets/logo.svg")
@@ -36,9 +38,11 @@ div.header
           a(href="#" title="Соглашения") Соглашения
       div.header__mobile-menu-buttons
         div.header__controls-item
-          +button('войти', 'border')
+          a(href="/login.html")
+            +button('войти', 'border')
         div.header__controls-item
-          +button('зарегистрироваться')
+          a(href="/register.html")
+            +button('зарегистрироваться')
   button.header__mobile-button Меню
     i
       span

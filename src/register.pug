@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+html(lang="ru")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Toxin
+  body
+    header
+      include ./includes/header.pug
+
+    main
+       
+        div.authorization
+            div.authorization__bg
+                img(src="assets/auth_bg.png")
+            div.authorization__card
+                h1 Регистрация аккаунта
+                div.authorization__block
+                    div.authorization__el
+                        input(type="text" placeholder="Имя")
+                    div.authorization__el
+                        input(type="text" placeholder="Фамилия")
+                    div.authorization__el.authorization__gender
+                        +radio([{
+                            text: "Мужчина",
+                            name: "male"
+                        }, {
+                            text: "Женщина",
+                            name: "female"
+                        }])
+
+                div.authorization__block  
+                    div.authorization__el  
+                        h3 Дата рождения
+                        input(type="text" id="date-mask")
+                div.authorization__block
+                    div.authorization__el
+                        h3 Данные для входа в сервис
+                        input(type="text" placeholder="Email")
+                    div.authorization__el
+                        input(type="text" placeholder="Пароль")
+                    div.authorization__el
+                        +toggle('toogle_reg', "Получать спецпредложения")
+                div.authorization__block
+                    +button('Зарегистрироваться', 'arrow')
+                div.authorization__block.authorization__block-inline
+                    p Уже есть аккаунт на Toxin?
+                    a(href="/login.html")
+                        +button('Войти', 'border')
+    footer
+      include ./includes/footer.pug
+    script(src="https://code.iconify.design/1/1.0.7/iconify.min.js")

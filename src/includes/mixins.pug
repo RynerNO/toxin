@@ -253,3 +253,9 @@ mixin roomCard(room)
         p
           span=room.reviews
           span  Отзывов
+mixin radio(options)
+  div.radio
+    each option in options
+      div(name=option.name).radio__el
+        i.radio__circle
+        p.radio__text=option.text
