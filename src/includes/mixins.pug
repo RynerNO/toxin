@@ -1,23 +1,31 @@
 //- DROPDOWNS
 
 
-mixin dateDropdown(id)
+mixin dateDropdown(id, single)
   if id 
-    div(id=id).dateDropdown
+    div(id=id single=single).dateDropdown
       div.dateDropdown__datepicker-container
-        div.dateDropdown__buttons
-          - var from_id = id+'_from'
-          div
-            h3 Прибытие
-            div.dropdown-btn.dateDropdown__button
-              span(id=from_id) ДД.ММ.ГГГГ
-              i.material-icons keyboard_arrow_down
-          - var to_id = id+'_to'
-          div
-            h3 Выезд
-            div.dropdown-btn.dateDropdown__button
-              span(id=to_id) ДД.ММ.ГГГГ
-              i.material-icons keyboard_arrow_down
+        if single
+          div.dateDropdown__buttons.dateDropdown__buttons-single
+            - var from_id = id+'_from'
+              h3 Даты пребывания в отеле
+              div.dropdown-btn.dateDropdown__button.dateDropdown__button-single
+                span(id=from_id) ДД.ММ.ГГГГ
+                i.material-icons keyboard_arrow_down
+        else
+          div.dateDropdown__buttons
+            - var from_id = id+'_from'
+            div
+              h3 Прибытие
+              div.dropdown-btn.dateDropdown__button
+                span(id=from_id) ДД.ММ.ГГГГ
+                i.material-icons keyboard_arrow_down
+            - var to_id = id+'_to'
+            div
+              h3 Выезд
+              div.dropdown-btn.dateDropdown__button
+                span(id=to_id) ДД.ММ.ГГГГ
+                i.material-icons keyboard_arrow_down
         div.dateDropdown__calendar.dateDropdown__calendar_hidden
           - var calendar_id = id+'_cal'
           div(id=calendar_id).datepicker
@@ -42,6 +50,8 @@ mixin dateDropdown(id)
               span.datepicker__submit применить
   else
    p ID is required
+
+
 
 mixin dropdownOptions(id, title, text,  options) 
   if id 
@@ -98,7 +108,6 @@ mixin richCheckbox(id, text, options)
             else
               div.richCheckbox__option-text
                 p=option.title
-                p=option.text
   else
     p ID is required
 

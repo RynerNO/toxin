@@ -1,0 +1,143 @@
+@import './colors'
+
+.room
+    margin: 0 auto
+    max-width: 80%
+    @media(max-width: 400px)
+        max-width: 95%
+    &__images
+        display: flex
+        width: 100%
+        max-height: 485px
+        div
+            @media(max-width: 850px)
+                display: none
+            img
+                width: 100%
+                object-fit: none
+                display: flex
+        &-big
+            width: 68%
+            @media(max-width: 850px)
+                width: 100%
+    &__content
+        padding-top: 70px
+        display: flex
+        @media(max-width: 1000px)
+            flex-wrap: wrap-reverse
+        &-top
+            display: flex
+            @media(max-width: 1120px)
+                flex-wrap: wrap
+        &-bottom
+            display: flex
+            @media(max-width: 600px)
+                flex-wrap: wrap
+    &__card-top
+        display: flex
+        justify-content: space-between
+        align-items: center
+        width: 100%
+        padding-bottom: 20px
+        p:nth-child(1)
+            span
+                font-family: "Quicksand"
+                font-style: normal
+                font-weight: 700
+                font-size: 1.1875rem
+                color: $shade-100
+                &::before
+                    content: "№ "
+                    font-size: 0.875rem
+                    font-family: "Quicksand script=latin rev=1"
+        p:nth-child(2)
+            span
+                color: $shade-50
+            span:nth-child(1)
+                font-weight: bold
+                display: inline-block
+
+                &::first-letter
+                    letter-spacing: 2px
+                &::after
+                    content: "₽"
+            span:nth-child(2)
+                font-size: 12px
+    &__card
+        width: 100%
+        max-width: 23.75rem
+        display: flex
+        flex-direction: column
+        align-items: center
+        background: #FFFFFF
+        border: 1px solid $shade-25
+        box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2)
+        border-radius: 4px
+        padding: 1.875rem 
+    &__date
+        width: 100%
+        display: flex
+        justify-content: center
+        padding-bottom: 1.25rem
+    &__options
+        padding-bottom: 1.875rem
+        width: 100%
+        display: flex
+        justify-content: center
+    &__column
+        
+        &-left
+        &-right
+            padding-left: 5%
+            @media(max-width: 1000px)
+                width: 100%
+                display: flex
+                justify-content: center
+                padding-bottom: 30px
+                padding-left: 0px
+    &__chart
+        width: 120px
+        &-container
+            width: 100%
+            display: flex
+            @media(max-width: 1324px)
+                flex-wrap: wrap
+                justify-content: center
+        &-legend
+            min-width: 250px
+    &__impression
+        display: flex        
+        flex-direction: column
+        margin-left: 8%
+        h2
+            width: 100%
+    &__data
+        display: flex
+        flex-direction: column
+        h2
+            padding-bottom: 20px
+    &__reviews
+        &-title
+            display: flex
+            width: 100%
+            justify-content: space-between
+            padding-bottom: 20px
+            p
+                color: $shade-50
+                text-align: bottom
+        .review
+            padding-bottom: 22px
+    &__rules
+        width: 100%
+        h2 
+            padding-bottom: 20px
+            padding-left: 35px
+        max-width: 292px
+    &__cancel
+        width: 100%
+        h2 
+            padding-bottom: 20px
+        max-width: 341px
+        margin-left: 5%
+        @media(max-width: 600px)
+            padding-top: 20px

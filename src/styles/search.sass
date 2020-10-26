@@ -1,0 +1,40 @@
+@import './colors'
+.search
+    width: 100%
+    max-width: 80%
+    margin: 0 auto
+    margin-top: 1.875rem
+    display: flex
+    &__left-column
+        width: 100%
+        max-width: 16.625rem
+        .datepicker__dayNumbers
+            span
+                padding: 7px
+        &-item
+            width: 100%
+            padding-bottom: 1.875rem
+            &-price
+                font-size: 0.75rem
+                color: $shade-50
+                padding-top: 0.8125rem
+    &__right-column
+        h1
+            margin: 0
+            margin-bottom: 1.25rem
+        margin-left: 3.125rem
+    &__rooms
+        display: flex
+        flex-wrap: wrap
+        
+        .roomCard
+            margin-right: 12px
+            margin-bottom: 20px
+    &__pagination
+        width: 100%
+        display: flex
+        align-items: center
+        flex-direction: column
+        margin-top: 2.5rem
+        p
+            margin-top: 0.625rem

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+html(lang="ru")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Toxin
+  body
+    header
+      include ./includes/header.pug
+    main
+      div.search
+        div.search__left-column
+            div.search__left-column-item
+                +dateDropdown('date', "true")
+            div.search__left-column-item
+                +dropdownOptions('options', 'Гости', 'Сколько гостей', [
+                {
+                    name: 'adult',
+                    text: 'Взрослые'
+                },
+                {
+                    name: 'kids',
+                    text: 'Дети'
+                },
+                {
+                    name: 'baby',
+                    text: 'Младенцы'
+                }
+                ])
+            div.search__left-column-item
+                +rangeSlider('range', "Диапазон цены", "₽")
+                p.search__left-column-item-price Стоимость за сутки пребывания в номере
+            div.search__left-column-item
+                +richCheckbox('checkbox', "Правила дома", [{
+                    title: "Можно курить",
+                    name: "smoking"
+                }, {
+                    title: "Можно с питомцами",
+                    name: "pets"
+                }, {
+                    title: "Можно пригласить гостей (до 10 человек)",
+                    name: "guests"
+                }])
+            div.search__left-column-item
+                +richCheckbox('checkbox_rich', "Доступность", [{
+                    title: "Широкий коридор",
+                    text: "Ширина коридоров в номере не менее 91 см.",
+                    name: "widecorridor"
+                }, {
+                    title: "Помощник для инвалидов",
+                    text: "На 1 этаже вас встретит специалист  и проводит до номера.",
+                    name: "helper"
+                }])
+            div.search__left-column-item
+                +dropdownOptions('options_comfort', 'удобства номера', 'Какие удобства', [
+                {
+                    name: 'adult',
+                    text: 'Спальни'
+                },
+                {
+                    name: 'kids',
+                    text: 'Кровати'
+                },
+                {
+                    name: 'baby',
+                    text: 'Ванные комнаты'
+                }
+                ])
+            div.search__left-column-item
+                +expCheckbox('checkbox_exp', "дополнительные удобства", [{
+                    text: "Завтрак",
+                    name: "widecorridor"
+                }, {
+                    text: "Письменный стол",
+                    name: "helper"
+                }, {
+                    text: "Стул для кормления",
+                    name: "chaid"
+                }, {
+                    text: "Кроватка",
+                    name: "bed"
+                }, {
+                    text: "Телевизор",
+                    name: "tv"
+                }, {
+                    text: "Шампунь",
+                    name: "shamp"
+                }])
+        div.search__right-column
+            h1 Номера, которые мы для вас подобрали
+            div.search__rooms
+                a(href="/room.html")
+                    +roomCard({
+                        price: 7900,
+                        number: 388,
+                        images: ["assets/room_11.png", "assets/room_1.png", "assets/room_2.png",  "assets/room_5.png", 
+                        "assets/room_6.png", "assets/room_7.png", "assets/room_8.png", "assets/room_9.png", "assets/room_10.png", "assets/room_12.png"],
+                        reviews: 115,
+                        rate: 5
+                    })
+                a(href="/room.html")
+                    +roomCard({
+                        price: 11900,
+                        number: 288,
+                        images: ["assets/room_1.png", "assets/room_11.png", "assets/room_2.png", "assets/room_3.png", "assets/room_4.png", "assets/room_5.png", 
+                        "assets/room_6.png", "assets/room_7.png"],
+                        reviews: 11,
+                        rate: 4
+                    })
+                a(href="/room.html")
+                    +roomCard({
+                        price: 9440,
+                        number: 445,
+                        images: ["assets/room_2.png", "assets/room_1.png", "assets/room_11.png", "assets/room_3.png", "assets/room_4.png", "assets/room_5.png", 
+                        "assets/room_6.png", "assets/room_7.png", "assets/room_8.png", "assets/room_9.png", "assets/room_10.png", "assets/room_12.png"],
+                        reviews: 12,
+                        rate: 5
+                    })
+                a(href="/room.html")
+                    +roomCard({
+                        price: 9140,
+                        number: 333,
+                        images: ["assets/room_3.png", "assets/room_1.png", "assets/room_2.png", "assets/room_11.png", "assets/room_4.png", "assets/room_5.png", 
+                        "assets/room_6.png", "assets/room_7.png", "assets/room_8.png", "assets/room_9.png", "assets/room_10.png", "assets/room_12.png"],
+                        reviews: 77,
+                        rate: 4
+                    })
+                a(href="/room.html")
+                    +roomCard({
+                        price: 9100,
+                        number: 224,
+                        images: ["assets/room_4.png", "assets/room_1.png", "assets/room_2.png", "assets/room_3.png", "assets/room_11.png", "assets/room_5.png", 
+                        "assets/room_6.png", "assets/room_7.png", "assets/room_8.png", "assets/room_9.png", "assets/room_10.png", "assets/room_12.png"],
+                        reviews: 22,
+                        rate: 2
+                    })
+                a(href="/room.html")
+                    +roomCard({
+                        price: 9300,
+                        number: 775,
+                        images: ["assets/room_5.png", "assets/room_1.png", "assets/room_2.png", "assets/room_3.png", "assets/room_4.png", "assets/room_11.png", 
+                        "assets/room_6.png", "assets/room_7.png", "assets/room_8.png", "assets/room_9.png", "assets/room_10.png", "assets/room_12.png"],
+                        reviews: 99,
+                        rate: 5
+                    })
+                a(href="/room.html")
+                    +roomCard({
+                        price: 8900,
+                        number: 677,
+                        images: ["assets/room_6.png", "assets/room_1.png", "assets/room_2.png", "assets/room_3.png", "assets/room_4.png", "assets/room_5.png", 
+                        "assets/room_11.png", "assets/room_7.png", "assets/room_8.png", "assets/room_9.png", "assets/room_10.png", "assets/room_12.png"],
+                        reviews: 222,
+                        rate: 5
+                    })
+                a(href="/room.html")
+                    +roomCard({
+                        price: 9700,
+                        number: 123,
+                        images: ["assets/room_7.png", "assets/room_1.png", "assets/room_2.png", "assets/room_3.png", "assets/room_4.png", "assets/room_5.png", 
+                        "assets/room_6.png", "assets/room_11.png", "assets/room_10.png", "assets/room_12.png"],
+                        reviews: 111,
+                        rate: 5
+                    })
+                a(href="/room.html")
+                    +roomCard({
+                        price: 9440,
+                        number: 312,
+                        images: ["assets/room_8.png", "assets/room_1.png", "assets/room_2.png", "assets/room_3.png", "assets/room_4.png", "assets/room_5.png", 
+                        "assets/room_6.png", "assets/room_7.png", "assets/room_10.png", "assets/room_12.png"],
+                        reviews: 123,
+                        rate: 5
+                    })
+                a(href="/room.html")
+                    +roomCard({
+                        price: 4400,
+                        number: 132,
+                        images: ["assets/room_9.png", "assets/room_3.png", "assets/room_4.png", "assets/room_5.png", 
+                        "assets/room_6.png", "assets/room_7.png", "assets/room_8.png", "assets/room_11.png", "assets/room_10.png", "assets/room_12.png"],
+                        reviews: 144,
+                        rate: 5
+                    })
+                a(href="/room.html")
+                    +roomCard({
+                        price: 1900,
+                        number: 567,
+                        images: ["assets/room_10.png","assets/room_3.png", "assets/room_4.png", "assets/room_5.png", 
+                        "assets/room_6.png", "assets/room_7.png", "assets/room_8.png", "assets/room_9.png", "assets/room_11.png", "assets/room_12.png"],
+                        reviews: 145,
+                        rate: 5
+                    })
+                a(href="/room.html")
+                    +roomCard({
+                        price: 5200,
+                        number: 138,
+                        images: ["assets/room_12.png", "assets/room_3.png", "assets/room_4.png", "assets/room_5.png", 
+                        "assets/room_6.png", "assets/room_7.png", "assets/room_8.png", "assets/room_9.png", "assets/room_10.png", "assets/room_11.png"],
+                        reviews: 15,
+                        rate: 3
+                    })
+            div.search__pagination
+                +pagination('pagination', 15, 1)
+                p 1 – 12 из 100+ вариантов аренды
+    footer
+      include ./includes/footer.pug
+
+    script(src="https://code.iconify.design/1/1.0.7/iconify.min.js")

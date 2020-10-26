@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+html(lang="ru")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Toxin
+  body
+    header
+      include ./includes/header.pug
+
+    main
+        div.room
+            div.room__images
+
+                img(src="assets/room_img_1.png").room__images-big
+                div
+                    img(src="assets/room_img_2.png")
+                    img(src="assets/room_img_3.png")
+            div.room__content
+                div.room__column-left
+                    div.room__content-top
+                        div.room__data
+                            h2 Сведения о номере
+                            +iconTextList([{
+                                icon: "insert_emoticon",
+                                title: "Комфорт",
+                                text: "Шумопоглощающие стены"
+                            },
+                            {
+                                icon: "location_city",
+                                title: "Удобство",
+                                text: "Окно в каждой из спален"
+                            },
+                            {
+                                icon: "whatshot",
+                                title: "Уют",
+                                text: "Номер оснащён камином"
+                            }])
+                        div.room__impression
+                            h2 Впечатления от номера
+                            div.room__chart-container
+                                div(class="room__chart")
+                                div(class="room__chart-legend")        
+                    div.room__content-middle
+                        div.room__reviews-title
+                            h2 Отзывы посетителей номера
+                            p 2 отзыва
+                        div.room__reviews
+                            +review({
+                                title: "Мурад Сарафанов",
+                                time: "5 дней назад",
+                                text: "Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.",
+                                liked: true,
+                                likes: 12,
+                                src: "assets/avatar.png"
+                            })
+                            +review({
+                                title: "Патрисия Стёклышкова",
+                                time: "Неделю назад",
+                                text: "Обслуживание на высоте! Всё аккуратно, чисто. Завтраки в номер советую заказать, каждый день новое блюдо и десерт как комплимент",
+                                liked: false,
+                                likes: 2,
+                                src: "assets/avatar2.jpg"
+                            })
+                    div.room__content-bottom
+                        div.room__rules
+                            h2 Правила
+                            +bulletList(["Нельзя с питомцами", "Без вечеринок и мероприятий", "Время прибытия — после 13:00, а выезд до 12:00"])
+                        div.room__cancel
+                            h2 Отмена
+                            p Бесплатная отмена в течение 48 ч. После этого при отмене не позднее чем за 5 дн. до прибытия вы получите полный возврат за вычетом сбора за услуги.
+                div.room__column-right
+                    div.room__card
+                        div.room__card-top
+                            p 
+                                span 888
+                            p
+                                span 9900
+                                span  в сутки
+                        div.room__date
+                            +dateDropdown('date')
+                        div.room__options
+                            +dropdownOptions('options', 'Гости', 'Сколько гостей', [
+                            {
+                                name: 'adult',
+                                text: 'Взрослые'
+                            },
+                            {
+                                name: 'kids',
+                                text: 'Дети'
+                            },
+                            {
+                                name: 'baby',
+                                text: 'Младенцы'
+                            }
+                            ])
+                        +button('Забронировать', 'arrow')
+    footer
+      include ./includes/footer.pug
+    script(src="https://code.iconify.design/1/1.0.7/iconify.min.js")

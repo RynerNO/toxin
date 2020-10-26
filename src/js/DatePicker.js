@@ -72,6 +72,7 @@ export class DatePicker extends Events {
 	 * Check if current month has selected day for applying styling
 	 */
 	#hasSelected(date) {
+		console.log('has sele')
 		const month = date.getMonth()
 		const year = date.getFullYear()
 		let newEl = false
@@ -154,7 +155,6 @@ export class DatePicker extends Events {
 		const dayNumbersElement = this.element.querySelector(
 			'.datepicker__dayNumbers'
 		)
-		console.log(dayNumbersElement)
 		const daysInCurrentMonth = this.#amountDaysInMonth(this.month, this.year)
 		const daysInPreviousMonth = this.#amountDaysInMonth(
 			this.month - 1,

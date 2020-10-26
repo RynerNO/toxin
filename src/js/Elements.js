@@ -47,7 +47,9 @@ class DropdownDate extends ElementsBase {
 		this.#init(id)
 	}
 	#init(id) {
+     	 if(!this.wrapper) return
 		const calendar = new DatePicker(this.wrapper.querySelector(`#${id}_cal`))
+		this.calendar = calendar
 		calendar.on('from', (date) => {
 			this.#setTextDateFrom(date)
 		})
@@ -91,12 +93,28 @@ class DropdownDate extends ElementsBase {
 	}
 	show() {
 		this.callendarContainer.classList.remove('dateDropdown__calendar_hidden')
-
+		this.calendar.open()
 	}
 	hide() {
 		this.callendarContainer.classList.add('dateDropdown__calendar_hidden')
 	}
  	#setTextDateFrom(date) {
+		if(this.wrapper.getAttribute('single') === "true") {
+			const from = this.wrapper.querySelector(`#${this.id}_from`)
+			const to = from.textContent.split('-')[1] && `- ${from.textContent.split('-')[1]}` || ""
+			console.log(to)
+			if (typeof date === 'string') from.innerText = `${date} ${to}`
+			if (!date.from) return
+
+			const day = date.from.getDate()
+			const month = date.from.getMonth() + 1
+			const year = date.from.getFullYear()
+
+			from.innerText = `${day
+				.toString()
+				.padStart(2, '0')}.${month.toString().padStart(2, '0')}.${year}  ${to}`
+			
+		} else {
 		const from = this.wrapper.querySelector(`#${this.id}_from`)
 		if (typeof date === 'string') from.innerText = date
 		if (!date.from) return
@@ -108,19 +126,33 @@ class DropdownDate extends ElementsBase {
 		from.innerText = `${day
 			.toString()
 			.padStart(2, '0')}.${month.toString().padStart(2, '0')}.${year}`
+		}
 	}
 	#setTextDateTo(date) {
-		console.log(typeof date)
-		const to = this.wrapper.querySelector(`#${this.id}_to`)
-		if (typeof date === 'string') to.innerText = date
-		if (!date.to) return
+		if(this.wrapper.getAttribute('single') === "true") {
+			const to = this.wrapper.querySelector(`#${this.id}_from`)
+			const from = to.textContent.split('-')[0] || ""
+			if (typeof date === 'string') to.innerText = `${from} - ${date}`
+			if (!date.to) return
 
-		const day = date.to.getDate()
-		const month = date.to.getMonth() + 1
-		const year = date.to.getFullYear()
-		to.innerText = `${day
-			.toString()
-			.padStart(2, '0')}.${month.toString().padStart(2, '0')}.${year}`
+			const day = date.to.getDate()
+			const month = date.to.getMonth() + 1
+			const year = date.to.getFullYear()
+			to.innerText = `${from} - ${day
+				.toString()
+				.padStart(2, '0')}.${month.toString().padStart(2, '0')}.${year}`
+		} else {
+				const to = this.wrapper.querySelector(`#${this.id}_to`)
+				if (typeof date === 'string') to.innerText = date
+				if (!date.to) return
+
+				const day = date.to.getDate()
+				const month = date.to.getMonth() + 1
+				const year = date.to.getFullYear()
+				to.innerText = `${day
+					.toString()
+					.padStart(2, '0')}.${month.toString().padStart(2, '0')}.${year}`
+				}
 	}
 	hasDate() {
 		if (!this.date) return false
@@ -138,15 +170,17 @@ class DropdownOptions extends ElementsBase {
 		this.baseClass = 'dropdownOptions'
 		this.hideClass = `${this.baseClass}_hidden`
 		this.disabledClass = `${this.baseClass}__icon_disabled`
-		this.clearButton = this.wrapper.querySelector(`.${this.baseClass}__clear`)
-		this.confirmButton = this.wrapper.querySelector(
-			`.${this.baseClass}__confirm`
-		)
+		
 		this.visible = false
 		this.data = []
 		this.#init()
 	}
 	#init() {
+	  if(!this.wrapper) return
+	  	this.clearButton = this.wrapper.querySelector(`.${this.baseClass}__clear`)
+		this.confirmButton = this.wrapper.querySelector(
+			`.${this.baseClass}__confirm`
+		)
 		this.content = this.wrapper.querySelector(`.${this.baseClass}__content`)
 
 		this.dropdown_btn = this.wrapper.querySelector(`.${this.baseClass}__button`)
@@ -269,6 +303,7 @@ class ExpandedChecklist extends ElementsBase {
 		this.#init()
 	}
 	#init() {
+      if(!this.wrapper) return
 		this.expand_btn = this.wrapper.querySelector(`.${this.baseClass}__button`)
 		this.expand_btn.addEventListener('click', () => {
 			if (this.expanded) return this.hide()
@@ -328,6 +363,7 @@ class RichChecklist extends ElementsBase {
 		this.#init()
 	}
 	#init() {
+      if(!this.wrapper) return
 		this.#parseOptions()
 		for (let [name, option] of this.options) {
 			option.checkBox.addEventListener('click', () => {
@@ -364,6 +400,7 @@ class RateButton extends ElementsBase {
 		this.#init()
 	}
 	#init() {
+      if(!this.wrapper) return
 		this.#parseStars()
 		for(let i =0; i < this.stars.length; i++) {
 			this.stars[i].addEventListener('mouseenter', () => {
@@ -416,6 +453,10 @@ class RangeSlider extends ElementsBase {
 		
 		this.wrapper = document.querySelector(`#${id}`)
 		this.baseClass = "rangeSlider"
+		this.#init({min, max, start, end, step})
+	}
+	#init({min, max, start, end, step}) {
+      	if(!this.wrapper) return
 		this.slider = slider.create(this.wrapper.querySelector(`.${this.baseClass}__slider`), {
 			start: [start , end],
 			connect: true,
@@ -425,10 +466,6 @@ class RangeSlider extends ElementsBase {
 				'max': max
 			}
 		})
-		this.#init()
-	}
-	#init() {
-	
 		this.valuesEl = this.wrapper.querySelector(`.${this.baseClass}__values`)
 		this.currency = this.wrapper.querySelector(`.${this.baseClass}__currency`).innerText
 		this.slider.on('update', () => {
@@ -452,6 +489,7 @@ class LikeBtn extends ElementsBase {
 		this.#init()
 	}
 	#init() {
+      if(!this.wrapper) return
 		this.liked = this.wrapper.getAttribute("liked") || "false"
 		this.likes = Number(this.wrapper.getAttribute("likes")) || 0
 		this.likesCounter = this.wrapper.querySelector(`span`)
@@ -498,6 +536,7 @@ class Pagination extends ElementsBase {
 		this.#init() 
 	}
 	#init() {
+      if(!this.wrapper) return
 		
 		this.#reinitPagination()
 		
@@ -604,6 +643,7 @@ class Toggle extends ElementsBase {
 		this.#init()
 	}
 	#init() {
+      if(!this.wrapper) return
 		this.button = this.wrapper.querySelector(`.${this.baseClass}__button`)
 		this.button.addEventListener('click', () => {
 			this.#toggle()

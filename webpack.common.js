@@ -6,7 +6,7 @@ module.exports = {
     publicPath: "/",
     filename: 'bundle.js'
   },
-  entry: ['./src/index.js'],
+
   plugins: [new MiniCssExtractPlugin({
     filename: "[name].[hash].css",
     chunkFilename: "chunks/[id].[hash].css",
@@ -17,7 +17,20 @@ module.exports = {
     cache: true,
     hash: true,
     filename: 'index.html'
+  }), new HtmlWebpackPlugin({
+    template: './src/search.pug',
+    inject: true,
+    cache: true,
+    hash: true,
+    filename: 'search.html'
+  }), new HtmlWebpackPlugin({
+    template: './src/room.pug',
+    inject: true,
+    cache: true,
+    hash: true,
+    filename: 'room.html'
   })],
+  
   module: {
     rules: [
       {
