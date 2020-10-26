@@ -1,6 +1,6 @@
 include ./mixins.pug
 div.header
-  a(href="/")
+  a(href="index.html")
     img(src="./assets/logo.svg").header__logo
   div.header__controls
     div.header__controls-item
@@ -14,10 +14,10 @@ div.header
     div.header__controls-item
       a(href="#" title="Соглашения") Соглашения
     div.header__controls-item
-      a(href="/login.html")
+      a(href="login.html")
         +button('войти', 'border')
     div.header__controls-item
-      a(href="/register.html")
+      a(href="register.html")
         +button('зарегистрироваться')
   div.header__mobile-menu
     div.header__mobile-menu-top
@@ -38,10 +38,10 @@ div.header
           a(href="#" title="Соглашения") Соглашения
       div.header__mobile-menu-buttons
         div.header__controls-item
-          a(href="/login.html")
+          a(href="login.html")
             +button('войти', 'border')
         div.header__controls-item
-          a(href="/register.html")
+          a(href="register.html")
             +button('зарегистрироваться')
   button.header__mobile-button Меню
     i
