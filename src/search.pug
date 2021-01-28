@@ -86,8 +86,11 @@ html(lang="ru")
                     text: "Шампунь",
                     name: "shamp"
                 }])
+            +button('Применить', 'border', 'submit-filter')
         div.search__right-column
             h1 Номера, которые мы для вас подобрали
+            
+            +button('Фильтр', 'border', 'search-filter')
             div.search__rooms
                 a(href="room.html")
                     +roomCard({

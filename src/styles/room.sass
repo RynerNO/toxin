@@ -79,14 +79,20 @@
         display: flex
         justify-content: center
         padding-bottom: 1.25rem
+        @media (max-width: 460px)
+            .dateDropdown__buttons
+                flex-direction: column
+                .dateDropdown__buttons-container
+                    width: 100%
+                    margin-bottom: 10px
+                .dateDropdown__button
+                    width: 100%
     &__options
         padding-bottom: 1.875rem
         width: 100%
         display: flex
         justify-content: center
     &__column
-        
-        &-left
         &-right
             padding-left: 5%
             @media(max-width: 1000px)

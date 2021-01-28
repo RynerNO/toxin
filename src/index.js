@@ -168,3 +168,13 @@ if(chart_el) {
 	label2.fill = am4core.color("#BC9CFF");
 	label2.fontFamily = "Montserrat"
 }
+
+const searchFilterBtn = document.querySelector('#search-filter')
+const searchFilter = document.querySelector('.search__left-column')
+const searchFilterSubmit = document.querySelector('#submit-filter')
+searchFilterSubmit.addEventListener('click', () => {
+	searchFilter.classList.toggle('search__left-column__visible')
+})
+searchFilterBtn.addEventListener('click', () => {
+	searchFilter.classList.toggle('search__left-column__visible')
+})

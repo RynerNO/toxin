@@ -15,13 +15,13 @@ mixin dateDropdown(id, single)
         else
           div.dateDropdown__buttons
             - var from_id = id+'_from'
-            div
+            div.dateDropdown__buttons-container
               h3 Прибытие
               div.dropdown-btn.dateDropdown__button
                 span(id=from_id) ДД.ММ.ГГГГ
                 i.material-icons keyboard_arrow_down
             - var to_id = id+'_to'
-            div
+            div.dateDropdown__buttons-container
               h3 Выезд
               div.dropdown-btn.dateDropdown__button
                 span(id=to_id) ДД.ММ.ГГГГ
@@ -203,7 +203,7 @@ mixin bulletList(items)
 //- SUBSCRIPTION
 mixin subscription()
   div.subscription
-    input(type="text" placeholder="Email")
+    input(type="text" placeholder="Email" class="text-input")
     i.material-icons.btn__arrow arrow_forward
 
 //- PAGINATION
